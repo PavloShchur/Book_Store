@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link href="/css/main.css" rel="stylesheet"/>
+<link href="/styles/main.css" rel="stylesheet"/>
 </head>
 <body>
  <ul>
@@ -18,10 +18,9 @@
   <li style="float:right"><a class="active" href="#about">About</a></li>
 </ul>
 
-
-
 <div style="text-align: center; margin-top: 1%">
 	<form:form modelAttribute="author" method="post" action="saveAuthor">
+		${AuthorNameException}
 		<form:input path="name" placeholder="nameOfAuthor"/>
 		<form:input path="surname" placeholder="surnameOfAuthor"/>
 

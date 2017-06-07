@@ -7,4 +7,5 @@ public interface BookValidationMessages {
 
     String EMPTY_BOOKTITLE_FIELD = "EMPTY BOOK TITLE";
     String BOOKTITLE_ALREADY_EXISTS = "BOOKTITLE ALREADY EXISTS";
+    String PRICE_FIELD_IS_EMPTY = "PRICE FIELD IS EMPTY";
 }

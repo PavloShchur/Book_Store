@@ -1,22 +1,18 @@
 package com.books.entity;
 
-import java.util.List;
-import java.util.Set;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
-public class User extends AbstractEntity{
+public class User extends AbstractEntity implements UserDetails{
 
 	
 	/* @Column(unique=true) */
@@ -26,8 +22,9 @@ public class User extends AbstractEntity{
 	private String email;
 	@Column(name = "Password")
 	private String password;
-	@Column(name = "Role")
-	private RoleOfMan roleOfMan;
+
+	@Enumerated
+	private Role role;
 
 	@OneToMany(mappedBy = "user")
 	private List<Orders> orders;
@@ -39,12 +36,11 @@ public class User extends AbstractEntity{
 	public User() {
 	}
 
-	public User(String name, String email, String password, RoleOfMan roleOfMan) {
+	public User(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.roleOfMan = roleOfMan;
 	}
 
 
@@ -72,14 +68,6 @@ public class User extends AbstractEntity{
 		this.password = password;
 	}
 
-	public RoleOfMan getRoleOfMan() {
-		return roleOfMan;
-	}
-
-	public void setRoleOfMan(RoleOfMan roleOfMan) {
-		this.roleOfMan = roleOfMan;
-	}
-
 	public List<Orders> getOrders() {
 		return orders;
 	}
@@ -96,11 +84,50 @@ public class User extends AbstractEntity{
 		this.books = books;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
-	
-	
 
+	//UserDetails
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role.name()));
+		return authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		return String.valueOf(id);
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

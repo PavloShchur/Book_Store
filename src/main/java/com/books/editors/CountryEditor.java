@@ -1,8 +1,6 @@
 package com.books.editors;
 
 import com.books.entity.Country;
-import com.books.entity.Genre;
-
 import java.beans.PropertyEditorSupport;
 
 /**

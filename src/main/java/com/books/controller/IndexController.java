@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.books.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
@@ -16,6 +17,12 @@ public class IndexController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("users", userService.findAll());
-		return "index";
+		return "views-base-index";
+	}
+
+	@PostMapping("/")
+	public String indexAfterLogin(Model model) {
+		model.addAttribute("users", userService.findAll());
+		return "views-base-index";
 	}
 }

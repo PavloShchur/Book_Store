@@ -20,6 +20,7 @@
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
 		</property>
 
+		
 		<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml"></property>
 
 		<property name="persistenceUnitName" value="primary"></property>
@@ -30,6 +31,5 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
 
 </beans>

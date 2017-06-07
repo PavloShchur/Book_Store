@@ -4,62 +4,23 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Books</title>
 	<link rel="stylesheet" href="/styles/main.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sideBar.css">
+	<%--<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/sideBar.css">--%>
 	<link rel="stylesheet" href="/styles/bootstrap-theme.css">
 	<link rel="stylesheet" href="/styles/bootstrap.css">
 	<script src="/js/index.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-</head>
-<body>
-<div id="main">
-	<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle='collapse' data-target='#responsive-menu'>
-					<span class="sr-only">Open navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-
-				</button>
-				<a class="navbar-brand" href="#">Logo</a>
-			</div>
-			<div class="collapse navbar-collapse" id="responsive-menu">
-				<ul class="nav navbar-nav">
-					<li><a href="/signup" target="_blank">Sign Up</a></li>
-					<li class="dropdown">
-					<li><a href="/listOfBooks" target="_blank" class="dropdown-toggle" data-toggle='dropdown'>Books</a></li>
-					<ul class="dropdown-menu">
-						<li><a href="#">Option 1</a></li>
-						<li><a href="#">Option 2</a></li>
-						<li><a href="#">Option 3</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Option 4</a></li>
-					</ul>
-					</li>
-					<li><a href="/listOfBooks" target="_blank">Books</a></li>
-					<li><a href="/listOfAuthors" target="_blank">Authors</a></li>
-					<li><a href="${pageContext.request.contextPath}/listOfGenres" target="_blank">Genres</a></li>
-					<li><a href="/registration" target="_blank">Registration</a></li>
-					<li><a href="/country" target="_blank">Country</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <div style="text-align: center; margin-top: 1%">
 
 	<form:form modelAttribute="book" method="post" action="/saveBook">
 		${BookNameException}
+		${BookPriceException}
 		<form:input path="titleOfBook" placeholder="title of book"/>
-		<form:input path="priceOfBook" placeholder="priceOfBook"/>
+		<form:input path="priceOfBook" placeholder="priceOfBook" type="number" name="quantity" min="1" required="required"/>
 		<form:input path="nameOfAuthor" placeholder="nameOfAuthor"/>
 		<form:input path="surnameOfAuthor" placeholder="surnameOfAuthor"/>
 		<form:input path="yearOfPublishing" placeholder="yearOfPublishing"/>
@@ -97,7 +58,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-	
+
 </body>
 </html>

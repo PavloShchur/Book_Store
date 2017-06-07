@@ -35,7 +35,7 @@ public class AuthorController {
 		model.addAttribute("authors", authorService.findAll());
 		model.addAttribute("coutries", countryService.findAll());
 		model.addAttribute("author", new Author());
-		return "listOfAuthors";
+		return "views-authors-listOfAuthors";
 	}
 
 	@PostMapping("/saveAuthor")
@@ -47,7 +47,9 @@ public class AuthorController {
 					e.getMessage().equals(AuthorValidationMessages.EMPTY_AUTHORNAME_FIELD)){
 				model.addAttribute("AuthorNameException", e.getMessage());
 			}
-			return "listOfAuthors";		}
+			model.addAttribute("coutries", countryService.findAll());
+			return "views-authors-listOfAuthors";
+		}
 		return "redirect:/listOfAuthors";
 	}
 
@@ -62,7 +64,7 @@ public class AuthorController {
 	@RequestMapping(value = "/updateAuthor/{id}", method = RequestMethod.GET)
 	public String getAuthor(@PathVariable int id, Model model) {
 		model.addAttribute("authorAttribute", authorService.findOne(id));
-		return "updateAuthor";
+		return "views-authors-updateAuthors";
 	}
 
 	@RequestMapping(value = "/updateAuthor/{id}", method = RequestMethod.POST)
@@ -70,7 +72,7 @@ public class AuthorController {
 		author.setId(id);
 		authorService.update(author);
 		model.addAttribute("authors", authorService.findAll());
-		return "listOfAuthors";
+		return "views-authors-listOfAuthors";
 	}
 
 }
