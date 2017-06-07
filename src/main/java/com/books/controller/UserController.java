@@ -19,8 +19,10 @@ public class UserController {
 	public String user(Model model) {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("user", new User());
-		return "registration";
+		return "views-user-registration";
 	}
+
+
 
 	@PostMapping("/saveUser")
 	public String user(@ModelAttribute User user, Model model) {
@@ -31,15 +33,16 @@ public class UserController {
 					e.getMessage().equals(UserValidationMessages.USERNAME_ALREADY_EXISTS)){
 				model.addAttribute("UserNameException", e.getMessage());
 			}
-			return "registration";
+			return "views-user-registration";
 		}
-		return "redirect:/registration";
+		return "redirect:/views-user-registration";
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
 		model.addAttribute("users", userService.findAll());
-		return "signup";
+		model.addAttribute("user", new User());
+		return "views-user-signup";
 	}
 
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)

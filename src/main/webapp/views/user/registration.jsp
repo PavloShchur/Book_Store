@@ -33,7 +33,7 @@
 
     <div class="tabs-content">
         <div id="signup-tab-content" class="active">
-            <form:form modelAttribute="user" class="signup-form" method="post">
+            <form:form modelAttribute="user" class="signup-form" action="/saveUser" method="post">
                 <h3 style="text-align: center;color: red">${UserNameException}</h3>
                 <form:input path="name" type="text" class="input" id="user_name" autocomplete="off"
                             placeholder="Username"/>

@@ -30,9 +30,7 @@
                         <li><a href="/country" target="_blank">Country</a></li>
                         <li>
                             <form:form action="/logout" method="post">
-
                                 <button class="btn btn-default">logout</button>
-
                             </form:form>
                         </li>
                     </ul>

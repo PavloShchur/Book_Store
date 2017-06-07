@@ -7,7 +7,7 @@
     <import resource="applicationContext.xml"/>
 
     <security:http use-expressions="true">
-        <security:form-login login-page="/signUp" login-processing-url="/login"
+        <security:form-login login-page="/signup" login-processing-url="/login"
                              authentication-success-forward-url="/"/>
 
         <security:logout logout-url="/logout" logout-success-url="/"/>
