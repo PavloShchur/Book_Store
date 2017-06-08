@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 31.05.2017
-  Time: 21:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -22,7 +15,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="responsive-menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="/signup" target="_blank">Sign Up</a></li>
+                        <li><a href="/signUp" target="_blank">Sign Up</a></li>
                         <li><a href="/listOfBooks" target="_blank">Books</a></li>
                         <li><a href="/listOfAuthors" target="_blank">Authors</a></li>
                         <li><a href="${pageContext.request.contextPath}/listOfGenres" target="_blank">Genres</a></li>

@@ -15,56 +15,44 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/registration")
-	public String user(Model model) {
+	@GetMapping("/signUp")
+	public String signp(Model model) {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("user", new User());
-		return "views-user-registration";
+		return "views-user-signUp";
 	}
 
-
-
-	@PostMapping("/saveUser")
-	public String user(@ModelAttribute User user, Model model) {
+	@PostMapping("/signUp")
+	public String signupAfter(@ModelAttribute User user, Model model) throws Exception {
 		try {
 			userService.save(user);
 		} catch (Exception e) {
 			if (e.getMessage().equals(UserValidationMessages.EMPTY_USERNAME_FIELD) ||
-					e.getMessage().equals(UserValidationMessages.USERNAME_ALREADY_EXISTS)){
+					e.getMessage().equals(UserValidationMessages.USERNAME_ALREADY_EXISTS)) {
 				model.addAttribute("UserNameException", e.getMessage());
 			}
-			return "views-user-registration";
-		}
-		return "redirect:/views-user-registration";
-	}
-
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup(Model model) {
-		model.addAttribute("users", userService.findAll());
-		model.addAttribute("user", new User());
-		return "views-user-signup";
+			return "views-user-signUp";}
+		return "redirect:/signUp";
 	}
 
 	@RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable int id) {
-
 		userService.delete(id);
-
-		return "redirect:/registration";
+		return "redirect:/signUp";
 	}
 
-	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.GET)
+	@GetMapping("/updateUser/{id}")
 	public String getUser(@PathVariable int id, Model model) {
 		model.addAttribute("userAttribute", userService.findOne(id));
-		return "updateUser";
+		return "views-user-updateUser";
 	}
 
-	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.POST)
+	@PostMapping("/updateUser/{id}")
 	public String updateUser(@ModelAttribute("user") User user, @PathVariable int id, Model model) {
 		user.setId(id);
 		userService.update(user);
 		model.addAttribute("users", userService.findAll());
-		return "registration";
+		return "views-user-signUp";
 	}
 
 
