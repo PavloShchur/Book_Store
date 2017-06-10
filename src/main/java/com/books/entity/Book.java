@@ -61,6 +61,8 @@ public class Book extends AbstractEntity {
 		this.genre = genre;
 	}
 
+
+
 	public int getPriceOfBook() {
 		return priceOfBook;
 	}

@@ -4,21 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-</head>
+
 <link href="/css/main.css" rel="stylesheet"/>
-<body>
-<ul>
-  <li><a href="/signup" target="_blank">Sign Up</a></li>
-  <li><a href="/listOfBooks" target="_blank">Books</a></li>
-  <li><a href="/listOfAuthors" target="_blank">Authors</a></li>
-  <li><a href="/listOfGenres" target="_blank">Genres</a></li>
-  
-  <li style="float:right"><a class="active" href="#about">About</a></li>
-</ul>
+
 
 <div style="text-align: center; margin-top: 10px">
 
@@ -47,5 +38,3 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>

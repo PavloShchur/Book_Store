@@ -1,18 +1,28 @@
 package com.books.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.books.entity.User;
 
 public interface UserService {
-	void save(User user) throws Exception;
+    void save(User user) throws Exception;
 
-	List<User> findAll();
+    List<User> findAll();
 
-	User findOne(int id);
+    User findOne(int id);
 
-	void delete(int id);
+    void delete(int id);
 
-	void update(User user);
+    void update(User user);
+
+    User findUserWithOrders(int id);
+
+    User findUserWithBooks(int id);
+
+    User findByUuid(String uuid);
+
+    void like(Principal principal, int id);
+
 
 }

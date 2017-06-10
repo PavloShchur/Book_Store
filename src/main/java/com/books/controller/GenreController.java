@@ -19,10 +19,10 @@ public class GenreController {
 	public String listOfGenres (Model model) {
 		model.addAttribute("genres", genreService.findAll());
 		model.addAttribute("genre", new Genre());
-		return "listOfGenres";
+		return "views-genres-listOfGenres";
 	}
 
-	@PostMapping("saveGenre")
+	@PostMapping("/saveGenre")
 	public String listOfGenres(@ModelAttribute Genre genre, Model model) {
 		try {
 			genreService.save(genre);
@@ -36,7 +36,7 @@ public class GenreController {
 		return  "redirect:/listOfGenres";
 	}
 
-	@RequestMapping(value = "/deleteGenre/{id}", method = RequestMethod.GET)
+	@GetMapping("/deleteGenre/{id}")
 	public String deleteGenre(@PathVariable int id) {
 
 		genreService.delete(id);
@@ -47,7 +47,7 @@ public class GenreController {
 	@RequestMapping(value = "/updateGenre/{id}", method = RequestMethod.GET)
 	public String getGenre(@PathVariable int id, Model model) {
 		model.addAttribute("genreAttribute", genreService.findOne(id));
-		return "updateGenre";
+		return "views-genres-updateGenre";
 	}
 
 	@RequestMapping(value = "/updateGenre/{id}", method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class GenreController {
 		genre.setId(id);
 		genreService.update(genre);
 		model.addAttribute("genres", genreService.findAll());
-		return "listOfGenres";
+		return "views-genres-listOfGenres";
 	}
 
 }

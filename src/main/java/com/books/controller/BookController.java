@@ -37,7 +37,7 @@ public class BookController {
         return "views-books-listOfBooks";
     }
 
-    @PostMapping("saveBook")
+    @PostMapping("/saveBook")
     public String listOfBooks(@ModelAttribute Book book, Model model) {
         try {
             bookService.save(book);
@@ -61,18 +61,20 @@ public class BookController {
         return "redirect:/listOfBooks";
     }
 
-    @RequestMapping(value = "/updateBook/{id}", method = RequestMethod.GET)
+    @GetMapping("/updateBook/{id}")
     public String getBook(@PathVariable int id, Model model) {
         model.addAttribute("bookAttribute", bookService.findOne(id));
-        return "views-books-updateBooks";
+        return "views-books-updateBook";
     }
 
-    @RequestMapping(value = "/updateBook/{id}", method = RequestMethod.POST)
+    @PostMapping("/updateBook/{id}")
     public String updateBook(@ModelAttribute("book") Book book, @PathVariable int id, Model model) {
         book.setId(id);
         bookService.update(book);
         model.addAttribute("books", bookService.findAll());
-        return "views-books-listOfBooks";
+        return "views-books-listOfBook";
     }
+
+
 
 }

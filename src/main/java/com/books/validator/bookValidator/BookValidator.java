@@ -23,9 +23,9 @@ public class BookValidator implements Validator {
             throw new BookException(BookValidationMessages.EMPTY_BOOKTITLE_FIELD);
         } else if (bookDao.findByTitleOfBook(book.getTitleOfBook()) != null) {
             throw new BookException(BookValidationMessages.BOOKTITLE_ALREADY_EXISTS);
-        } else if (book.getPriceOfBook() == Number.class.newInstance().intValue() &&
-                String.valueOf(book.getPriceOfBook()).isEmpty()) {
-            throw new BookException(BookValidationMessages.PRICE_FIELD_IS_EMPTY);
-        }
+//        } else if (book.getPriceOfBook() == Number.class.newInstance().intValue() &&
+//                String.valueOf(book.getPriceOfBook()).isEmpty()) {
+//            throw new BookException(BookValidationMessages.PRICE_FIELD_IS_EMPTY);
+//        }
     }
-}
+}}

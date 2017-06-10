@@ -1,5 +1,6 @@
 package com.books.service.impl;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -48,17 +49,35 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.save(orders);
 	}
 
-	public void save(int userId, List<Integer> drinksIds) {
+	@Override
+	public void addIntoBasket(Principal principal, int id) {
+		User user = userDao.findUserWithBooks(Integer.parseInt(principal.getName()));
+		Book book = bookDao.findOne(id);
+		user.getBooks().add(book);
+		userDao.save(user);
+	}
+
+	@Override
+	public void deleteFromBasket(int userId, int bookId) {
+
+	}
+
+	@Override
+	public void buy(int userId) {
+
+	}
+
+	public void save(int userId, List<Integer> booksIds) {
 		Orders orders = new Orders(LocalDate.now());
 		orderDao.saveAndFlush(orders);
 
-		List<Book> drinks = new ArrayList<Book>();
+		List<Book> books = new ArrayList<Book>();
 
-		for (Integer id : drinksIds) {
-			drinks.add(bookDao.findOne(id));
+		for (Integer id : booksIds) {
+			books.add(bookDao.findOne(id));
 		}
 
-		orders.setBooks(new HashSet<Book>(drinks));
+		orders.setBooks(new HashSet<Book>(books));
 
 		User user = userDao.findOne(userId);
 

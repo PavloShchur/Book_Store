@@ -56,9 +56,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!--<error-page>
-        <location>/views/error/error403.jsp</location>
-        <error-code>403</error-code>
-    </error-page>-->
+	<!--<error-page>-->
+        <!--<location>/views/error/error403.jsp</location>-->
+        <!--<error-code>403</error-code>-->
+    <!--</error-page>-->
 
 </web-app>

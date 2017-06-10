@@ -4,11 +4,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
@@ -23,6 +22,9 @@ public class User extends AbstractEntity implements UserDetails{
 	@Column(name = "Password")
 	private String password;
 
+	private boolean enable;
+	private String uuid;
+
 	@Enumerated
 	private Role role;
 
@@ -31,9 +33,14 @@ public class User extends AbstractEntity implements UserDetails{
 
 	@ManyToMany
 	@JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "UserID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
-	private List<Book> books;
+	private List<Book> books = new ArrayList<Book>();
 
 	public User() {
+	}
+
+	public User(String name, String password) {
+		this.name = name;
+		this.password = password;
 	}
 
 	public User(String name, String email, String password) {
@@ -92,6 +99,22 @@ public class User extends AbstractEntity implements UserDetails{
 		this.role = role;
 	}
 
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + ", password=" + password + "]";
@@ -128,6 +151,6 @@ public class User extends AbstractEntity implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return enable;
 	}
 }
