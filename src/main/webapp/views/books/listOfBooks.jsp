@@ -23,7 +23,7 @@
 
 <table style="border: 1px solid black">
     <tr>
-        <th style="border: 1px solid black">Title of@@@@@@@@@@ book</th>
+        <th style="border: 1px solid black">Title of book</th>
         <th style="border: 1px solid black">Price if book</th>
         <th style="border: 1px solid black">Name of Author</th>
         <th style="border: 1px solid black">Surname of Author</th>

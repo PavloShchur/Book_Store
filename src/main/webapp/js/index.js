@@ -1,7 +1,3 @@
-/**
-    * Created by User on 27.05.2017.
-    */
-
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";

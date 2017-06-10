@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User returnedUser = new User();
         returnedUser.setId(user.getId());
         returnedUser.setName(user.getName());
-        
+
         for (int i = 0; i < user.getBooks().size(); i++) {
             returnedUser.getBooks().add(new Book(user.getBooks().get(i).getTitleOfBook(),
                     user.getBooks().get(i).getPriceOfBook(),
