@@ -5,9 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "User")
@@ -29,11 +27,11 @@ public class User extends AbstractEntity implements UserDetails{
 	private Role role;
 
 	@OneToMany(mappedBy = "user")
-	private List<Orders> orders;
+	private Set<Orders> orders;
 
 	@ManyToMany
 	@JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "UserID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
-	private List<Book> books = new ArrayList<Book>();
+	private Set<Book> books = new HashSet<Book>();
 
 	public User() {
 	}
@@ -75,19 +73,19 @@ public class User extends AbstractEntity implements UserDetails{
 		this.password = password;
 	}
 
-	public List<Orders> getOrders() {
+	public Set<Orders> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Orders> orders) {
+	public void setOrders(Set<Orders> orders) {
 		this.orders = orders;
 	}
 
-	public List<Book> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
 

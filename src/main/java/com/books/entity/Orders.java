@@ -1,6 +1,7 @@
 package com.books.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Orders extends AbstractEntity {
 	@JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "OrderID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
 	private List<Book> books;
 
-	public Orders() {
+	public Orders(LocalDateTime now) {
 	}
 
 	public Orders(LocalDate localDate) {

@@ -1,7 +1,7 @@
 package com.books.entity;
 
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,130 +16,147 @@ import javax.persistence.Table;
 @Table(name = "Book")
 public class Book extends AbstractEntity {
 
-	@Column(name = "Title")
-	private String titleOfBook;
-	@Column(name = "Price")
-	private int priceOfBook;
-	@Column(name = "Name")
-	private String nameOfAuthor;
-	@Column(name = "Surname")
-	private String surnameOfAuthor;
-	@Column(name = "Year")
-	private short yearOfPublishing;
+    @Column(name = "Title")
+    private String titleOfBook;
+    @Column(name = "Price")
+    private int priceOfBook;
+    @Column(name = "Name")
+    private String nameOfAuthor;
+    @Column(name = "Surname")
+    private String surnameOfAuthor;
+    @Column(name = "Year")
+    private short yearOfPublishing;
 
-	@Lob
-	@Column(name = "Image")
-	private byte[] empImage;
+    private String pathImage;
 
-	@ManyToOne
-	private Genre genre;
+    @Lob
+    @Column(name = "Image")
+    private byte[] empImage;
 
-	@ManyToMany
-	@JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "UserID"))
-	private List<User> users;
+    @ManyToOne
+    private Genre genre;
 
-	@ManyToMany
-	@JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "OrderID"))
-	private List<Orders> orders;
+    @ManyToMany
+    @JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "UserID"))
+    private Set<User> users;
 
-	@ManyToMany
-	@JoinTable(name = "AuthorBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "AuthorID"))
-	private List<Author> authors;
+    @ManyToMany
+    @JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "OrderID"))
+    private Set<Orders> orders;
 
-	public Book() {
-	}
+    @ManyToMany
+    @JoinTable(name = "AuthorBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "AuthorID"))
+    private Set<Author> authors;
 
-	public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor,
-			short yearOfPublishing, byte[] empImage, Genre genre) {
-		super();
-		this.titleOfBook = titleOfBook;
-		this.priceOfBook = priceOfBook;
-		this.nameOfAuthor = nameOfAuthor;
-		this.surnameOfAuthor = surnameOfAuthor;
-		this.yearOfPublishing = yearOfPublishing;
-		this.empImage = empImage;
-		this.genre = genre;
-	}
+    public Book() {
+    }
+
+    public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor,
+                short yearOfPublishing, byte[] empImage, Genre genre) {
+        super();
+        this.titleOfBook = titleOfBook;
+        this.priceOfBook = priceOfBook;
+        this.nameOfAuthor = nameOfAuthor;
+        this.surnameOfAuthor = surnameOfAuthor;
+        this.yearOfPublishing = yearOfPublishing;
+        this.empImage = empImage;
+        this.genre = genre;
+    }
 
 
+    public int getPriceOfBook() {
+        return priceOfBook;
+    }
 
-	public int getPriceOfBook() {
-		return priceOfBook;
-	}
+    public void setPriceOfBook(int priceOfBook) {
+        this.priceOfBook = priceOfBook;
+    }
 
-	public void setPriceOfBook(int priceOfBook) {
-		this.priceOfBook = priceOfBook;
-	}
+    public String getNameOfAuthor() {
+        return nameOfAuthor;
+    }
 
-	public String getNameOfAuthor() {
-		return nameOfAuthor;
-	}
+    public void setNameOfAuthor(String nameOfAuthor) {
+        this.nameOfAuthor = nameOfAuthor;
+    }
 
-	public void setNameOfAuthor(String nameOfAuthor) {
-		this.nameOfAuthor = nameOfAuthor;
-	}
+    public String getSurnameOfAuthor() {
+        return surnameOfAuthor;
+    }
 
-	public String getSurnameOfAuthor() {
-		return surnameOfAuthor;
-	}
+    public void setSurnameOfAuthor(String surnameOfAuthor) {
+        this.surnameOfAuthor = surnameOfAuthor;
+    }
 
-	public void setSurnameOfAuthor(String surnameOfAuthor) {
-		this.surnameOfAuthor = surnameOfAuthor;
-	}
+    public byte[] getEmpImage() {
+        return empImage;
+    }
 
-	public byte[] getEmpImage() {
-		return empImage;
-	}
+    public void setEmpImage(byte[] empImage) {
+        this.empImage = empImage;
+    }
 
-	public void setEmpImage(byte[] empImage) {
-		this.empImage = empImage;
-	}
+    public Genre getGenre() {
+        return genre;
+    }
 
-	public Genre getGenre() {
-		return genre;
-	}
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 
-	public void setGenre(Genre genre) {
-		this.genre = genre;
-	}
+    public Set<User> getUsers() {
+        return users;
+    }
 
-	public List<User> getUsers() {
-		return users;
-	}
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+    public Set<Orders> getOrders() {
+        return orders;
+    }
 
-	public List<Orders> getOrders() {
-		return orders;
-	}
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
 
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
-	}
+    public Set<Author> getAuthors() {
+        return authors;
+    }
 
-	public String getTitleOfBook() {
-		return titleOfBook;
-	}
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
 
-	public void setTitleOfBook(String titleOfBook) {
-		this.titleOfBook = titleOfBook;
-	}
+    public String getTitleOfBook() {
+        return titleOfBook;
+    }
 
-	public short getYearOfPublishing() {
-		return yearOfPublishing;
-	}
+    public void setTitleOfBook(String titleOfBook) {
+        this.titleOfBook = titleOfBook;
+    }
 
-	public void setYearOfPublishing(short yearOfPublishing) {
-		this.yearOfPublishing = yearOfPublishing;
-	}
+    public short getYearOfPublishing() {
+        return yearOfPublishing;
+    }
 
-	@Override
-	public String toString() {
-		return "Book [titleOfBook=" + titleOfBook + ", priceOfBook=" + priceOfBook + ", nameOfAuthor=" + nameOfAuthor
-				+ ", surnameOfAuthor=" + surnameOfAuthor + ", yearOfPublishing=" + yearOfPublishing + ", genre=" + genre
-				+ "]";
-	}
+    public void setYearOfPublishing(short yearOfPublishing) {
+        this.yearOfPublishing = yearOfPublishing;
+    }
+
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
+    @Override
+    public String toString() {
+        return "Book [titleOfBook=" + titleOfBook + ", priceOfBook=" + priceOfBook + ", nameOfAuthor=" + nameOfAuthor
+                + ", surnameOfAuthor=" + surnameOfAuthor + ", yearOfPublishing=" + yearOfPublishing + ", genre=" + genre
+                + "]";
+    }
 
 }

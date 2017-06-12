@@ -30,7 +30,10 @@
                         ${book.titleOfBook}
                 </td>
                 <td>
-                    <a href="/deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
+                    <a href="deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
+                </td>
+                <td>
+
                 </td>
             </tr>
         </c:forEach>

@@ -1,5 +1,7 @@
 package com.books.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import com.books.validator.Validator;
@@ -12,6 +14,7 @@ import com.books.dao.GenreDao;
 import com.books.entity.Book;
 import com.books.entity.Genre;
 import com.books.service.BookService;
+import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("rawtypes")
 @Service
@@ -27,8 +30,21 @@ public class BookServiceImpl implements BookService {
     @Qualifier("bookValidator")
     Validator validator;
 
-    public Book save(Book book) throws Exception {
+    public Book save(Book book, MultipartFile image) throws Exception {
         validator.validate(book);
+        String path = System.getProperty("catalina.home") + "/resources/"
+                + book.getTitleOfBook() + "/" + image.getOriginalFilename();
+
+        book.setPathImage("resources/" + book.getTitleOfBook() + "/" + image.getOriginalFilename());
+
+        File filePath = new File(path);
+
+        try {
+            filePath.mkdirs();
+            image.transferTo(filePath);
+        } catch (IOException e) {
+            System.out.println("error with file");
+        }
         return bookDao.save(book);
     }
 
@@ -46,6 +62,8 @@ public class BookServiceImpl implements BookService {
     }
 
     public Book update(Book book) {
+
+
         return bookDao.save(book);
     }
 

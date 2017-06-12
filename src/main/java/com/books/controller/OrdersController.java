@@ -32,9 +32,9 @@ public class OrdersController {
 
 	@GetMapping("/deleteFromBasket/{userId}/{bookId}")
 	public String deleteFromBasket(@PathVariable int userId,
-								   @PathVariable int drinkId){
+								   @PathVariable int bookId){
 
-		ordersService.deleteFromBasket(userId, drinkId);
+		ordersService.deleteFromBasket(userId, bookId);
 
 		return "redirect:/profile";
 	}

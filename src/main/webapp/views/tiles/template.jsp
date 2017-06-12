@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/styles/bootstrap-theme.css">
     <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/listOfBooks.css">
     <script src="/js/index.js"></script>
 </head>
 <body>

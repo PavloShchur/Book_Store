@@ -1,6 +1,5 @@
 package com.books.controller;
 
-import com.books.entity.Orders;
 import com.books.service.MailSenderService;
 import com.books.validator.Validator;
 import com.books.validator.userLoginValidation.UserLoginValidationMessages;
@@ -38,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public String signupAfter(@ModelAttribute User user, Model model) throws Exception {
+    public String signUpAfter(@ModelAttribute User user, Model model) throws Exception {
 
         String uuid = UUID.randomUUID().toString();
         user.setUuid(uuid);
@@ -120,16 +119,13 @@ public class UserController {
         user.setEnable(true);
 
         userService.update(user);
-
         return "redirect:/";
     }
 
-    @GetMapping("/like/{id}")
-        public String like(@PathVariable int id, Principal principal){
+    @GetMapping("/send/{id}")
+    public String like(@PathVariable int id, Principal principal) {
+        System.out.println("like");
         userService.like(principal, id);
-            return "redirect:/views-books-listOfBooks";
-        }
-
-
-
+        return "views-base-index";
+    }
 }

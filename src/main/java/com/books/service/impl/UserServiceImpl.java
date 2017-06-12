@@ -1,7 +1,7 @@
 package com.books.service.impl;
 
 import java.security.Principal;
-import java.util.List;
+import java.util.Set;
 
 import com.books.dao.BookDao;
 import com.books.entity.Book;
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @SuppressWarnings("unchecked")
-    public List findAll() {
-        return userDao.findAll();
+    public Set<User> findAll() {
+        return (Set<User>) userDao.findAll();
 
     }
 
@@ -76,13 +76,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         returnedUser.setName(user.getName());
 
         for (int i = 0; i < user.getBooks().size(); i++) {
-            returnedUser.getBooks().add(new Book(user.getBooks().get(i).getTitleOfBook(),
-                    user.getBooks().get(i).getPriceOfBook(),
-                    user.getBooks().get(i).getNameOfAuthor(),
-                    user.getBooks().get(i).getSurnameOfAuthor(),
-                    user.getBooks().get(i).getYearOfPublishing(),
-                    user.getBooks().get(i).getEmpImage(),
-                    user.getBooks().get(i).getGenre()));
+            returnedUser.getBooks().add(new Book(user.getBooks().iterator().next().getTitleOfBook(),
+                    user.getBooks().iterator().next().getPriceOfBook(),
+                    user.getBooks().iterator().next().getNameOfAuthor(),
+                    user.getBooks().iterator().next().getSurnameOfAuthor(),
+                    user.getBooks().iterator().next().getYearOfPublishing(),
+                    user.getBooks().iterator().next().getEmpImage(),
+                    user.getBooks().iterator().next().getGenre()));
         }
 
         return returnedUser;

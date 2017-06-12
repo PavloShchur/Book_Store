@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.books.entity.Book;
 import com.books.service.BookService;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BookController {
@@ -31,6 +32,7 @@ public class BookController {
 
     @GetMapping("/listOfBooks")
     public String listOfBooks(Model model) {
+        System.out.println("list of books");
         model.addAttribute("books", bookService.findAll());
         model.addAttribute("genres", genreService.findAll());
         model.addAttribute("book", new Book());
@@ -38,9 +40,10 @@ public class BookController {
     }
 
     @PostMapping("/saveBook")
-    public String listOfBooks(@ModelAttribute Book book, Model model) {
+    public String listOfBooks(@ModelAttribute Book book, Model model,
+                              @RequestAttribute("image") MultipartFile image) {
         try {
-            bookService.save(book);
+            bookService.save(book, image);
         } catch (Exception e) {
             if (e.getMessage().equals(BookValidationMessages.BOOKTITLE_ALREADY_EXISTS) ||
                     e.getMessage().equals(BookValidationMessages.EMPTY_BOOKTITLE_FIELD)) {
