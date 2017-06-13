@@ -1,14 +1,14 @@
 package com.books.service;
 
 import java.security.Principal;
-import java.util.Set;
+import java.util.List;
 
 import com.books.entity.User;
 
 public interface UserService {
     void save(User user) throws Exception;
 
-    Set<User> findAll();
+    List<User> findAll();
 
     User findOne(int id);
 

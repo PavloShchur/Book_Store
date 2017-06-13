@@ -122,7 +122,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/send/{id}")
+    @GetMapping("/like/{id}")
     public String like(@PathVariable int id, Principal principal) {
         System.out.println("like");
         userService.like(principal, id);

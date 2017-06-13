@@ -16,22 +16,13 @@ import javax.persistence.Table;
 @Table(name = "Book")
 public class Book extends AbstractEntity {
 
-    @Column(name = "Title")
     private String titleOfBook;
-    @Column(name = "Price")
     private int priceOfBook;
-    @Column(name = "Name")
     private String nameOfAuthor;
-    @Column(name = "Surname")
     private String surnameOfAuthor;
-    @Column(name = "Year")
     private short yearOfPublishing;
 
     private String pathImage;
-
-    @Lob
-    @Column(name = "Image")
-    private byte[] empImage;
 
     @ManyToOne
     private Genre genre;
@@ -52,14 +43,13 @@ public class Book extends AbstractEntity {
     }
 
     public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor,
-                short yearOfPublishing, byte[] empImage, Genre genre) {
+                short yearOfPublishing, String pathImage, Genre genre) {
         super();
         this.titleOfBook = titleOfBook;
         this.priceOfBook = priceOfBook;
         this.nameOfAuthor = nameOfAuthor;
         this.surnameOfAuthor = surnameOfAuthor;
         this.yearOfPublishing = yearOfPublishing;
-        this.empImage = empImage;
         this.genre = genre;
     }
 
@@ -86,14 +76,6 @@ public class Book extends AbstractEntity {
 
     public void setSurnameOfAuthor(String surnameOfAuthor) {
         this.surnameOfAuthor = surnameOfAuthor;
-    }
-
-    public byte[] getEmpImage() {
-        return empImage;
-    }
-
-    public void setEmpImage(byte[] empImage) {
-        this.empImage = empImage;
     }
 
     public Genre getGenre() {

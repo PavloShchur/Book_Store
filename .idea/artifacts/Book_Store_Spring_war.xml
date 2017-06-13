@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="Book_Store_Spring-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="Book_Store_Spring:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes">
-          <element id="jpa-descriptors" facet="Book_Store_Spring/jpa/JPA" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

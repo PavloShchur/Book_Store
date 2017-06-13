@@ -33,6 +33,16 @@
             <td><form:label path="yearOfPublishing">Year of publishing</form:label></td>
             <td><form:input path="yearOfPublishing"/></td>
         </tr>
+        <tr>
+            <c:forEach var="book" items="${books}">
+
+                <td><form:label path="pathImage">Image</form:label></td>
+                <td>
+                    <img src="${book.pathImage}" alt="" width="20%" height="20%">
+                </td>
+
+            </c:forEach>
+        </tr>
     </table>
     <input type="submit" value="Save"/>
 </form:form>

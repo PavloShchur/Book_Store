@@ -25,7 +25,7 @@ public class CountryController {
     public String country(Model model){
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("country", new Country());
-        return "country";
+        return "views-country-country";
     }
 
     @PostMapping("/saveCountry")
@@ -37,7 +37,7 @@ public class CountryController {
                     || e.getMessage().equals(CountryValidationMessages.EMPTY_COUNTRYNAME_FIELD)){
                 model.addAttribute("CounyryNmaeException", e.getMessage());
             }
-            return "country";
+            return "views-country-country";
         }
         return "redirect:/country";
     }
@@ -51,14 +51,14 @@ public class CountryController {
     @GetMapping("/updateCountry{id}")
     public String getCoutry(@PathVariable int id, Model model){
         model.addAttribute("countryAttribute", countryService.findOne(id));
-        return "updateCountry";
+        return "views-country-updateCountry";
     }
 
     public String updateCountry(@ModelAttribute("country") Country country, @PathVariable int id, Model model){
         country.setId(id);
         countryService.update(country);
         model.addAttribute("countries", countryService.findAll());
-        return "country";
+        return "views-country-country";
     }
 }
 

@@ -1,7 +1,7 @@
 package com.books.service.impl;
 
 import java.security.Principal;
-import java.util.Set;
+import java.util.List;
 
 import com.books.dao.BookDao;
 import com.books.entity.Book;
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @SuppressWarnings("unchecked")
-    public Set<User> findAll() {
-        return (Set<User>) userDao.findAll();
+    public List<User> findAll() {
+        return  userDao.findAll();
 
     }
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                     user.getBooks().iterator().next().getNameOfAuthor(),
                     user.getBooks().iterator().next().getSurnameOfAuthor(),
                     user.getBooks().iterator().next().getYearOfPublishing(),
-                    user.getBooks().iterator().next().getEmpImage(),
+                    user.getBooks().iterator().next().getPathImage(),
                     user.getBooks().iterator().next().getGenre()));
         }
 
