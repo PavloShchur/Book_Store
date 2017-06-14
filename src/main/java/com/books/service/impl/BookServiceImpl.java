@@ -1,20 +1,22 @@
 package com.books.service.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import com.books.validator.Validator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
 import com.books.dao.BookDao;
 import com.books.dao.GenreDao;
 import com.books.entity.Book;
 import com.books.entity.Genre;
 import com.books.service.BookService;
+import com.books.validator.Validator;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 @SuppressWarnings("rawtypes")
 @Service
@@ -61,8 +63,30 @@ public class BookServiceImpl implements BookService {
         bookDao.delete(id);
     }
 
-    public Book update(Book book) {
+    public Book update(Book book, MultipartFile image) {
 
+        book.setTitleOfBook(book.getTitleOfBook());
+
+        String path = System.getProperty("catalina.home") + "/resources/"
+                + book.getTitleOfBook() + "/" + image.getOriginalFilename();
+
+        book.setPathImage("resources/" + book.getTitleOfBook() + "/" + image.getOriginalFilename());
+
+        File filePath = new File(path);
+
+        try {
+            filePath.mkdirs();
+            try {
+                FileUtils.cleanDirectory
+                        (new File(System.getProperty("catalina.home") + "/resources/"
+                                + book.getTitleOfBook() + "/"));
+            } catch (IOException e) {
+
+            }
+            image.transferTo(filePath);
+        } catch (IOException e) {
+            System.out.println("error with file");
+        }
 
         return bookDao.save(book);
     }
@@ -70,6 +94,11 @@ public class BookServiceImpl implements BookService {
     public void addGenreToBook(Book book, Genre genre) {
         book.setGenre(genre);
         bookDao.save(book);
+    }
+
+    @Override
+    public Page<Book> findAllPages(Pageable pageable) {
+        return bookDao.findAll(pageable);
     }
 
 }

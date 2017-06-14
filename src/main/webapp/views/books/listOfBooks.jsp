@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="custom" uri="/WEB-INF/custom.tld" %>
+
 
 <title>Books</title>
 <div style="text-align: center; margin-top: 1%">
@@ -43,7 +45,7 @@
         <th style="border: 1px solid black">Like</th>
     </tr>
 
-    <c:forEach var="book" items="${books}">
+    <c:forEach var="book" items="${books.content}">
         <tr>
             <td style="border: 1px solid black">${book.titleOfBook}</td>
             <td style="border: 1px solid black">${book.priceOfBook}</td>
@@ -68,3 +70,29 @@
         </tr>
     </c:forEach>
 </table>
+
+<div style="display: flex; justify-content: center;text-align: center">
+
+    <div class="col-md-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-xs-6">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort <span
+                            class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <custom:sort innerHtml="Name asc" paramValue="titleOfBook"/>
+                        <custom:sort innerHtml="Name desc" paramValue="titleOfBook,desc"/>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-xs-12 text-center">
+                <custom:pageable page="${books}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
+            </div>
+            <div class="col-md-2 col-xs-6">
+                <custom:size posibleSizes="1,2,5,10" size="${books.size}"/>
+            </div>
+        </div>
+    </div>
+</div>
+

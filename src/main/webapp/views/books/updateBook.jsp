@@ -3,8 +3,8 @@
 
 <title>Book update</title>
 
-<c:url var="saveUrl" value="/updateBook/${bookAttribute.id}"/>
-<form:form modelAttribute="bookAttribute" method="POST" action="${saveUrl}">
+<c:url var="saveUrl" value="/updateBook/${bookAttribute.id}?${_csrf.parameterName}=${_csrf.token}"/>
+<form:form modelAttribute="bookAttribute" method="POST" action="${saveUrl}" enctype="multipart/form-data">
     <table>
         <tr>
             <td><form:label path="id">Id</form:label></td>
@@ -25,24 +25,29 @@
             <td><form:label path="nameOfAuthor">Name of author</form:label></td>
             <td><form:input path="nameOfAuthor"/></td>
         </tr>
+
         <tr>
             <td><form:label path="surnameOfAuthor">Surname of author</form:label></td>
             <td><form:input path="surnameOfAuthor"/></td>
         </tr>
+
         <tr>
             <td><form:label path="yearOfPublishing">Year of publishing</form:label></td>
             <td><form:input path="yearOfPublishing"/></td>
         </tr>
-        <tr>
-            <c:forEach var="book" items="${books}">
 
+        <tr>
                 <td><form:label path="pathImage">Image</form:label></td>
                 <td>
-                    <img src="${book.pathImage}" alt="" width="20%" height="20%">
+                    <img src="/${bookAttribute.pathImage}" alt="NO IMAGE" width="20%" height="20%">
                 </td>
-
-            </c:forEach>
         </tr>
+
+        <tr>
+            <input name="image" type="file">
+           <%-- <input: name="image" type="file">--%>
+        </tr>
+
     </table>
     <input type="submit" value="Save"/>
 </form:form>
