@@ -1,16 +1,8 @@
 package com.books.entity;
 
 
+import javax.persistence.*;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "Book")
@@ -21,7 +13,6 @@ public class Book extends AbstractEntity {
     private String nameOfAuthor;
     private String surnameOfAuthor;
     private short yearOfPublishing;
-
     private String pathImage;
 
     @ManyToOne
@@ -43,7 +34,8 @@ public class Book extends AbstractEntity {
     }
 
     public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor,
-                short yearOfPublishing, String pathImage, Genre genre) {
+                short yearOfPublishing,
+                Genre genre) {
         super();
         this.titleOfBook = titleOfBook;
         this.priceOfBook = priceOfBook;
@@ -53,6 +45,17 @@ public class Book extends AbstractEntity {
         this.genre = genre;
     }
 
+    public Book(String titleOfBook, int priceOfBook, String nameOfAuthor,
+                String surnameOfAuthor, short yearOfPublishing,
+                String pathImage, Genre genre) {
+        this.titleOfBook = titleOfBook;
+        this.priceOfBook = priceOfBook;
+        this.nameOfAuthor = nameOfAuthor;
+        this.surnameOfAuthor = surnameOfAuthor;
+        this.yearOfPublishing = yearOfPublishing;
+        this.pathImage = pathImage;
+        this.genre = genre;
+    }
 
     public int getPriceOfBook() {
         return priceOfBook;

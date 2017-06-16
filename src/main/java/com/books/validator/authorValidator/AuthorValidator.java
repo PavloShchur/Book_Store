@@ -1,19 +1,10 @@
 package com.books.validator.authorValidator;
 
 import com.books.dao.AuthorDao;
-import com.books.dao.UserDao;
 import com.books.entity.Author;
-import com.books.entity.User;
 import com.books.validator.Validator;
-import com.books.validator.userValidator.UserException;
-import com.books.validator.userValidator.UserValidationMessages;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-/**
- * Created by User on 30.05.2017.
- */
 
 @Component
 public class AuthorValidator implements Validator {

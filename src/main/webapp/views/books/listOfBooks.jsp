@@ -10,14 +10,13 @@
                action="/saveBook?${_csrf.parameterName}=${_csrf.token}"
                enctype="multipart/form-data">
         ${BookNameException}
-        ${BookPriceException}
-
         <form:input path="titleOfBook" placeholder="title of book"/>
+        ${BookPriceException}
         <form:input path="priceOfBook" placeholder="priceOfBook" type="number" name="quantity" min="1"
                     required="required"/>
-        <form:input path="nameOfAuthor" placeholder="nameOfAuthor"/>
-        <form:input path="surnameOfAuthor" placeholder="surnameOfAuthor"/>
-        <form:input path="yearOfPublishing" placeholder="yearOfPublishing"/>
+        <form:input path="nameOfAuthor" placeholder="nameOfAuthor" required="required"/>
+        <form:input path="surnameOfAuthor" placeholder="surnameOfAuthor" required="required"/>
+        <form:input path="yearOfPublishing" placeholder="yearOfPublishing" required="required"/>
 
         <form:select path="genre" items="${genres}" itemLabel="genreOfBook" itemValue="id"/>
 
@@ -54,7 +53,7 @@
             <td style="border: 1px solid black">${book.yearOfPublishing}</td>
             <td style="border: 1px solid black">${book.genre.genreOfBook}</td>
             <td>
-                <img src="${book.pathImage}" alt="" width="20%" height="20%">
+                <img src="${book.pathImage}" alt="NO IMAGE" width="20%" height="20%">
             </td>
             <td style="border: 1px solid black"><a href="/deleteBook/${book.id}">Delete</a></td>
             <td style="border: 1px solid black "><a href="/updateBook/${book.id}" target="_blank">Update</a></td>
@@ -77,7 +76,7 @@
         <div class="row">
             <div class="col-md-2 col-xs-6">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort <span
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort<span
                             class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">

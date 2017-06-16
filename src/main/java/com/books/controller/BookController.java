@@ -5,6 +5,7 @@ import com.books.entity.Genre;
 import com.books.service.GenreService;
 import com.books.validator.bookValidator.BookValidationMessages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import com.books.entity.Book;
 import com.books.service.BookService;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.awt.print.Pageable;
 
 @Controller
 public class BookController {
@@ -34,7 +33,7 @@ public class BookController {
 
 
     @GetMapping("/listOfBooks")
-    public String listOfBooks(Model model, @PageableDefault org.springframework.data.domain.Pageable pageable) {
+    public String listOfBooks(Model model, @PageableDefault Pageable pageable) {
         System.out.println("list of books");
         model.addAttribute("books", bookService.findAllPages(pageable));
         model.addAttribute("genres", genreService.findAll());
@@ -44,7 +43,7 @@ public class BookController {
 
     @PostMapping("/saveBook")
     public String listOfBooks(@ModelAttribute Book book, Model model,
-                              @RequestAttribute("image") MultipartFile image) {
+                              @RequestAttribute("image") MultipartFile image, @PageableDefault Pageable pageable) {
         try {
             bookService.save(book, image);
         } catch (Exception e) {
@@ -54,6 +53,8 @@ public class BookController {
             } else if (e.getMessage().equals(BookValidationMessages.PRICE_FIELD_IS_EMPTY)) {
                 model.addAttribute("BookPriceException", e.getMessage());
             }
+            model.addAttribute("books", bookService.findAllPages(pageable));
+            model.addAttribute("genres", genreService.findAll());
             return "views-books-listOfBooks";
         }
         return "redirect:/listOfBooks";
