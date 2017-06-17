@@ -37,15 +37,20 @@
         </tr>
 
         <tr>
-                <td><form:label path="pathImage">Image</form:label></td>
-                <td>
-                    <img src="/${bookAttribute.pathImage}" alt="NO IMAGE" width="20%" height="20%">
-                </td>
+            <td><form:label path="genre">Genre</form:label></td>
+            <td><form:select path="genre" items="${genres}" itemLabel="genreOfBook" itemValue="id"/></td>
+        </tr>
+
+        <tr>
+            <td><form:label path="pathImage">Image</form:label></td>
+            <td><form:input path="pathImage"/></td>
+            <td>
+                <img src="/${bookAttribute.pathImage}" alt="NO IMAGE" width="20%" height="20%">
+            </td>
         </tr>
 
         <tr>
             <input name="image" type="file">
-           <%-- <input: name="image" type="file">--%>
         </tr>
 
     </table>

@@ -47,6 +47,7 @@ public class BookServiceImpl implements BookService {
         } catch (IOException e) {
             System.out.println("error with file");
         }
+
         return bookDao.save(book);
     }
 
@@ -69,7 +70,7 @@ public class BookServiceImpl implements BookService {
 
         String path = "C:\\Users\\User\\Desktop\\apache-tomcat-8.0.43\\resources\\"
                 + book.getTitleOfBook()
-                + "/" + image.getOriginalFilename();
+                + "\\" + image.getOriginalFilename();
         book.setPathImage("resources/" + book.getTitleOfBook() + "/" + image.getOriginalFilename());
 
         File filePath = new File(path);
@@ -80,8 +81,6 @@ public class BookServiceImpl implements BookService {
                 FileUtils.cleanDirectory
                         (new File(System.getProperty("catalina.home") + "/resources/"
                                 + book.getTitleOfBook() + "/"));
-                System.out.println("FIX");
-
             } catch (IOException e) {
 
             }
@@ -90,7 +89,7 @@ public class BookServiceImpl implements BookService {
         } catch (IOException e) {
             System.out.println("error with file");
         }
-
+        System.out.println("Size of book: " + image.getSize());
         return bookDao.save(book);
     }
 
@@ -104,4 +103,9 @@ public class BookServiceImpl implements BookService {
         return bookDao.findAll(pageable);
     }
 
+    @Override
+    public Book update(Book book) {
+
+       return bookDao.save(book);
+    }
 }

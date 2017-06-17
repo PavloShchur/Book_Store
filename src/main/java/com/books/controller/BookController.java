@@ -28,6 +28,8 @@ public class BookController {
     @Autowired
     private GenreService genreService;
 
+    String pathOfImage;
+
 
     @InitBinder
     public void init(WebDataBinder binder) {
@@ -37,7 +39,6 @@ public class BookController {
 
     @GetMapping("/listOfBooks")
     public String listOfBooks(Model model, @PageableDefault Pageable pageable) {
-        System.out.println("list of books");
         model.addAttribute("books", bookService.findAllPages(pageable));
         model.addAttribute("genres", genreService.findAll());
         model.addAttribute("book", new Book());
@@ -74,19 +75,26 @@ public class BookController {
 
     @GetMapping("/updateBook/{id}")
     public String getBook(@PathVariable int id, Model model) {
+        Book book = bookService.findOne(id);
+        pathOfImage = book.getPathImage();
         model.addAttribute("bookAttribute", bookService.findOne(id));
+        model.addAttribute("genres", genreService.findAll());
         return "views-books-updateBook";
     }
 
     @PostMapping("/updateBook/{id}")
     public String updateBook(@ModelAttribute Book book,
                              @RequestAttribute("image") MultipartFile image,
-                             @PathVariable int id, Model model, @PageableDefault Pageable pageable) {
+                             @PathVariable int id, Model model) {
         book.setId(id);
 
-        bookService.update(book, image);
-        model.addAttribute("bookAttribute", bookService.findOne(id));
-        bookService.findAllPages(pageable);
+        if(image.isEmpty()){
+            bookService.update(book);
+        } else{
+            bookService.update(book, image);
+            model.addAttribute("bookAttribute", bookService.findOne(id));
+        }
+        
         return "redirect:/listOfBooks";
     }
 }

@@ -18,4 +18,5 @@ public interface BookService {
 	void addGenreToBook(Book book, Genre genre);
 	Page<Book> findAllPages(Pageable pageable);
 
+	Book update(Book book);
 }
