@@ -94,7 +94,7 @@ public class BookController {
             bookService.update(book, image);
             model.addAttribute("bookAttribute", bookService.findOne(id));
         }
-        
+
         return "redirect:/listOfBooks";
     }
 }
