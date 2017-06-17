@@ -67,9 +67,9 @@ public class BookServiceImpl implements BookService {
 
         book.setTitleOfBook(book.getTitleOfBook());
 
-        String path = System.getProperty("catalina.home") + "/resources/"
-                + book.getTitleOfBook() + "/" + image.getOriginalFilename();
-
+        String path = "C:\\Users\\User\\Desktop\\apache-tomcat-8.0.43\\resources\\"
+                + book.getTitleOfBook()
+                + "/" + image.getOriginalFilename();
         book.setPathImage("resources/" + book.getTitleOfBook() + "/" + image.getOriginalFilename());
 
         File filePath = new File(path);
@@ -80,6 +80,8 @@ public class BookServiceImpl implements BookService {
                 FileUtils.cleanDirectory
                         (new File(System.getProperty("catalina.home") + "/resources/"
                                 + book.getTitleOfBook() + "/"));
+                System.out.println("FIX");
+
             } catch (IOException e) {
 
             }

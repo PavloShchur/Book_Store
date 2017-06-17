@@ -7,6 +7,7 @@ import com.books.validator.bookValidator.BookValidationMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import com.books.entity.Book;
 import com.books.service.BookService;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.jws.WebParam;
 
 @Controller
 public class BookController {
@@ -43,7 +46,8 @@ public class BookController {
 
     @PostMapping("/saveBook")
     public String listOfBooks(@ModelAttribute Book book, Model model,
-                              @RequestAttribute("image") MultipartFile image, @PageableDefault Pageable pageable) {
+                              @RequestAttribute("image") MultipartFile image,
+                              @PageableDefault Pageable pageable) {
         try {
             bookService.save(book, image);
         } catch (Exception e) {
@@ -75,10 +79,14 @@ public class BookController {
     }
 
     @PostMapping("/updateBook/{id}")
-    public String updateBook(@ModelAttribute Book book, @RequestParam MultipartFile image,
-                             @PathVariable int id) {
+    public String updateBook(@ModelAttribute Book book,
+                             @RequestAttribute("image") MultipartFile image,
+                             @PathVariable int id, Model model, @PageableDefault Pageable pageable) {
         book.setId(id);
+
         bookService.update(book, image);
+        model.addAttribute("bookAttribute", bookService.findOne(id));
+        bookService.findAllPages(pageable);
         return "redirect:/listOfBooks";
     }
 }
