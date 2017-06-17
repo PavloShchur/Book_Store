@@ -74,6 +74,7 @@ public class UserController {
     @PostMapping("/updateUser/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable int id, Model model) {
         user.setId(id);
+        System.out.println();
         userService.update(user);
         model.addAttribute("users", userService.findAll());
         return "views-user-signUp";
