@@ -24,9 +24,8 @@ public class OrdersController {
 
 	@GetMapping("/addIntoBasket/{id}")
 	public String buy(Principal principal, @PathVariable int id){
-
+		ordersService.makeSleep();
 		ordersService.addIntoBasket(principal, id);
-
 		return "redirect:/";
 	}
 

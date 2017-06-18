@@ -25,7 +25,7 @@
                 </td>
                 <td>
                     <c:forEach items="${order.books}" var="book">
-                        ${book.drinkName} <br>
+                        ${book.titleOfBook} <br>
                     </c:forEach>
                 </td>
             </tr>

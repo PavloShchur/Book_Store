@@ -43,7 +43,7 @@
 
         <tr>
             <td><form:label path="pathImage">Image</form:label></td>
-            <td><form:input path="pathImage"/></td>
+            <td><form:input path="pathImage" type="hidden"/></td>
             <td>
                 <img src="/${bookAttribute.pathImage}" alt="NO IMAGE" width="20%" height="20%">
             </td>

@@ -14,11 +14,11 @@
         <security:intercept-url pattern="/country" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/listOfAuthors" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/updateAuthor" access="hasRole('ROLE_ADMIN')"/>
-        <security:intercept-url pattern="/listOfBooks" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/listOfBooks" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/updateBook" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/listOfGenres" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/updateGenre" access="hasRole('ROLE_ADMIN')"/>
-        <security:intercept-url pattern="/profile" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/updateUser" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/newOrder" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/updateCountry" access="hasRole('ROLE_ADMIN')"/>

@@ -11,13 +11,8 @@ import java.util.*;
 @Table(name = "User")
 public class User extends AbstractEntity implements UserDetails{
 
-	
-	/* @Column(unique=true) */
-	@Column(name = "Name")
 	private String name;
-	@Column(name = "Email")
 	private String email;
-	@Column(name = "Password")
 	private String password;
 
 	private boolean enable;
@@ -27,7 +22,7 @@ public class User extends AbstractEntity implements UserDetails{
 	private Role role;
 
 	@OneToMany(mappedBy = "user")
-	private Set<Orders> orders;
+	private Set<Orders> orders = new HashSet<Orders>();
 
 	@ManyToMany
 	@JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "UserID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
@@ -47,7 +42,6 @@ public class User extends AbstractEntity implements UserDetails{
 		this.email = email;
 		this.password = password;
 	}
-
 
 	public String getName() {
 		return name;
@@ -112,6 +106,8 @@ public class User extends AbstractEntity implements UserDetails{
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+
+
 
 	@Override
 	public String toString() {

@@ -65,6 +65,14 @@ public class BookController {
         return "redirect:/listOfBooks";
     }
 
+    @GetMapping("/buyBooks")
+    public String buyBooks(Model model, @PageableDefault Pageable pageable) {
+        model.addAttribute("books", bookService.findAll());
+        model.addAttribute("genres", genreService.findAll());
+        model.addAttribute("book", new Book());
+        return "views-books-buyBooks";
+    }
+
     @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable int id) {
 

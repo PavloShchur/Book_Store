@@ -57,7 +57,7 @@
             </td>
             <td style="border: 1px solid black"><a href="/deleteBook/${book.id}">Delete</a></td>
             <td style="border: 1px solid black "><a href="/updateBook/${book.id}" target="_blank">Update</a></td>
-            <sec:authorize access="hasRole('ROLE_USER')">
+            <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                 <td style="border: 1px solid black ">
                     <a href="/addIntoBasket/${book.id}">Basket</a>
                 </td>

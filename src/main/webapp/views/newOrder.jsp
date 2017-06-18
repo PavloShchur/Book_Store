@@ -8,9 +8,9 @@
 </head>
 <body>
 <form action="/createNewOrder" method="post">
-		
+
 		<c:forEach var="user" items="${users}">
-			<input type="radio" name="userId" value="${user.id}">${user.name}  
+			<input type="radio" name="userId" value="${user.id}">${user.name}
 			<a href="/profile/${user.id}">profile</a>
 			<br>
 		</c:forEach>

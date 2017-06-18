@@ -2,6 +2,7 @@ package com.books.entity;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,15 +21,15 @@ public class Book extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "UserID"))
-    private Set<User> users;
+    private Set<User> users = new HashSet<User>();
 
     @ManyToMany
     @JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "OrderID"))
-    private Set<Orders> orders;
+    private Set<Orders> orders = new HashSet<Orders>();
 
     @ManyToMany
     @JoinTable(name = "AuthorBook", joinColumns = @JoinColumn(name = "BookID"), inverseJoinColumns = @JoinColumn(name = "AuthorID"))
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<Author>();
 
     public Book() {
     }

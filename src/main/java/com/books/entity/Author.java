@@ -1,6 +1,8 @@
 package com.books.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -20,7 +22,7 @@ public class Author extends AbstractEntity {
 	@ManyToMany
 	@JoinTable(name = "AuthorBook", joinColumns = @JoinColumn(name = "AuthorID"), 
 	inverseJoinColumns = @JoinColumn(name = "BookID"))
-	private List<Book> books;
+	private Set<Book> books = new HashSet<Book>();
 
 	public Author() {
 	}

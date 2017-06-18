@@ -74,15 +74,15 @@ public class UserController {
     @PostMapping("/updateUser/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable int id, Model model) {
         user.setId(id);
-        System.out.println();
         userService.update(user);
         model.addAttribute("users", userService.findAll());
         return "views-user-signUp";
     }
 
     @GetMapping("/profile")
-    public String profile(Principal principal, Model model) {
-        model.addAttribute("userBasket", userService.findUserWithBooks(Integer.parseInt(principal.getName())));
+    public String userProfile(Principal principal, Model model) {
+        model.addAttribute("userBasket",
+                userService.findUserWithBooks(Integer.parseInt(principal.getName())));
         return "views-user-profile";
     }
 
@@ -107,7 +107,8 @@ public class UserController {
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
 
-        model.addAttribute("user", userService.findUserWithOrders(Integer.parseInt(principal.getName())));
+        model.addAttribute("user",
+                userService.findUserWithOrders(Integer.parseInt(principal.getName())));
 
         return "views-user-history";
     }

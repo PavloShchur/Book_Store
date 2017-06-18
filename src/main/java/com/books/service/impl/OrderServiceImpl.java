@@ -1,15 +1,5 @@
 package com.books.service.impl;
 
-import java.security.Principal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.books.dao.BookDao;
 import com.books.dao.OrderDao;
 import com.books.dao.UserDao;
@@ -17,6 +7,15 @@ import com.books.entity.Book;
 import com.books.entity.Orders;
 import com.books.entity.User;
 import com.books.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -62,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
     public void deleteFromBasket(int userId, int bookId) {
 
         User user = userDao.findUserWithBooks(userId);
-        Book book = bookDao.booksWithUsers(userId);
+        Book book = bookDao.booksWithUsers(bookId);
         user.getBooks().remove(book);
         userDao.save(user);
     }
@@ -87,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void save(int userId, List<Integer> booksIds) {
-        Orders orders = new Orders(LocalDate.now());
+        Orders orders = new Orders(LocalDateTime.now());
         orderDao.saveAndFlush(orders);
 
         List<Book> books = new ArrayList<Book>();
@@ -102,4 +101,15 @@ public class OrderServiceImpl implements OrderService {
 
         orderDao.save(orders);
     }
+
+    @Override
+    public void makeSleep() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

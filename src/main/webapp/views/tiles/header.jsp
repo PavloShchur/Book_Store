@@ -15,32 +15,26 @@
                     <li><a href="/signUp" target="_blank">Sign Up</a></li>
                 </sec:authorize>
 
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
-
-                    <li><a href="/listOfBooks" target="_blank">Books</a></li>
-
-                </sec:authorize>
-
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li><a href="/listOfBooks" target="_blank">Books</a></li>
                     <li><a href="/listOfAuthors" target="_blank">Authors</a></li>
                     <li><a href="${pageContext.request.contextPath}/listOfGenres" target="_blank">Genres</a></li>
                     <li><a href="/country" target="_blank">Country</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
+                    <li><a href="/listOfBooks" target="_blank">Books</a></li>
 
-                    <li><a href="/profile" target="_blank">Profile</a></li>
                     <li><a href="/history" target="_blank">History</a></li>
-
-                </sec:authorize>
-
-                <sec:authorize access="isAuthenticated()">
+                    <li><a href="/buyBooks" target="_blank">Buy book</a></li>
+                    <li><a href="/profile" target="_blank">Profile</a></li>
                     <li>
                         <form:form action="/logout" method="post">
                             <button class="btn btn-default">logout</button>
                         </form:form>
                     </li>
                 </sec:authorize>
+
             </ul>
         </div>
     </div>

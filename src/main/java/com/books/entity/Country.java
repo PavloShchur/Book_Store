@@ -1,7 +1,9 @@
 package com.books.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by User on 28.05.2017.
@@ -15,7 +17,7 @@ public class Country extends AbstractEntity{
     private String nameOfCountry;
 
     @OneToMany(mappedBy = "country")
-    private List<Author> authors;
+    private Set<Author> authors = new HashSet<Author>();
 
     public Country() {
     }
@@ -32,11 +34,11 @@ public class Country extends AbstractEntity{
         this.nameOfCountry = nameOfCountry;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
     }
 

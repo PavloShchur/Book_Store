@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
-        return  userDao.findAll();
+        return userDao.findAll();
 
     }
 
@@ -69,24 +69,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserWithBooks(int id) {
-        User user = userDao.findUserWithBooks(id);
-
-        User returnedUser = new User();
-        returnedUser.setId(user.getId());
-        returnedUser.setName(user.getName());
-
-        for (int i = 0; i < user.getBooks().size(); i++) {
-            returnedUser.getBooks().add(new Book(user.getBooks().iterator().next().getTitleOfBook(),
-                    user.getBooks().iterator().next().getPriceOfBook(),
-                    user.getBooks().iterator().next().getNameOfAuthor(),
-                    user.getBooks().iterator().next().getSurnameOfAuthor(),
-                    user.getBooks().iterator().next().getYearOfPublishing(),
-                    user.getBooks().iterator().next().getPathImage(),
-                    user.getBooks().iterator().next().getGenre()));
-        }
-
-        return returnedUser;
+        return userDao.findUserWithBooks(id);
     }
+
 
     @Override
     public User findByUuid(String uuid) {

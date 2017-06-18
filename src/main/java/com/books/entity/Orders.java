@@ -2,6 +2,7 @@ package com.books.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,29 +14,37 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Orders extends AbstractEntity {
 
-	private LocalDate localDate;
+	private LocalDateTime localDateTime;
 
 	@ManyToOne
 	private User user;
 
 	@ManyToMany
 	@JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "OrderID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
-	private List<Book> books;
+	private List<Book> books = new ArrayList<Book>();
 
 	public Orders(LocalDateTime now) {
-	}
-
-	public Orders(LocalDate localDate) {
 		super();
-		this.localDate = localDate;
+		this.localDateTime = now;
 	}
 
-	public LocalDate getLocalDate() {
-		return localDate;
+
+
+
+
+	public Orders() {
 	}
 
-	public void setLocalDate(LocalDate localDate) {
-		this.localDate = localDate;
+	public LocalDateTime getLocalDateTime() {
+		return localDateTime;
+	}
+
+	public void setLocalDateTime(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 	public User getUser() {
@@ -56,7 +65,7 @@ public class Orders extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Orders [localDate=" + localDate + "]";
+		return "Orders [localDate=" + localDateTime + "]";
 	}
 
 }

@@ -9,6 +9,7 @@
         <tr>
             <c:if test="${userBasket.books.size() != 0}">
                 <th>Title</th>
+                <th>Price</th>
                 <th>delete from basket</th>
                 <th>
                     <form:form action="/buy" method="post">
@@ -25,12 +26,16 @@
         </thead>
         <tbody>
         <c:forEach var="book" items="${userBasket.books}">
+
             <tr>
                 <td>
                         ${book.titleOfBook}
                 </td>
                 <td>
-                    <a href="deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
+                        ${book.priceOfBook}
+                </td>
+                <td>
+                    <a href="/deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
                 </td>
                 <td>
 

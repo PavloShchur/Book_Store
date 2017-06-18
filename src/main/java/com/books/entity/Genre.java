@@ -1,6 +1,8 @@
 package com.books.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ public class Genre extends AbstractEntity {
 	private String genreOfBook;
 
 	@OneToMany(mappedBy = "genre")
-	private List<Book> books;
+	private Set<Book> books = new HashSet<Book>();
 
 	public Genre() {
 	}
@@ -33,11 +35,11 @@ public class Genre extends AbstractEntity {
 		this.genreOfBook = genreOfBook;
 	}
 
-	public List<Book> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
 
