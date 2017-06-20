@@ -3,11 +3,13 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap-theme.css">
     <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/listOfBooks.css">
-    <script src="/js/index.js"></script>
+    <script src="${pageContext.request.contextPath}/js/index.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

@@ -1,3 +1,6 @@
+/**
+ * Created by admin on 5/22/2017.
+ */
 jQuery(document).ready(function($) {
     tab = $('.tabs h3 a');
 

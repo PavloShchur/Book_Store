@@ -11,18 +11,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class IndexController {
 
-	@Autowired
-	UserService userService;
+    @Autowired
+    UserService userService;
 
-	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("users", userService.findAll());
-		return "views-base-index";
-	}
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "views-base-index";
+    }
 
-	@PostMapping("/")
-	public String indexAfterLogin(Model model) {
-		model.addAttribute("users", userService.findAll());
-		return "views-base-index";
-	}
+    @PostMapping("/")
+    public String indexAfterLogin(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "views-base-index";
+    }
+
+    @GetMapping("/openCityView")
+    public String magazine() {
+        return "views-magazine-listOfMagazine";
+    }
+
+
 }

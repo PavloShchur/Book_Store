@@ -24,7 +24,7 @@
 
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="/listOfBooks" target="_blank">Books</a></li>
-
+                    <li><a href="/openCityView" target="_blank">Magazine</a></li>
                     <li><a href="/history" target="_blank">History</a></li>
                     <li><a href="/buyBooks" target="_blank">Buy book</a></li>
                     <li><a href="/profile" target="_blank">Profile</a></li>
