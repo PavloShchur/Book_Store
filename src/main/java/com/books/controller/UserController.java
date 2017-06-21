@@ -59,25 +59,7 @@ public class UserController {
         return "redirect:/signUp";
     }
 
-    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable int id) {
-        userService.delete(id);
-        return "redirect:/signUp";
-    }
 
-    @GetMapping("/updateUser/{id}")
-    public String getUser(@PathVariable int id, Model model) {
-        model.addAttribute("userAttribute", userService.findOne(id));
-        return "views-user-updateUser";
-    }
-
-    @PostMapping("/updateUser/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable int id, Model model) {
-        user.setId(id);
-        userService.update(user);
-        model.addAttribute("users", userService.findAll());
-        return "views-user-signUp";
-    }
 
     @GetMapping("/profile")
     public String userProfile(Principal principal, Model model) {

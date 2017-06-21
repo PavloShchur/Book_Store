@@ -28,6 +28,10 @@ public class User extends AbstractEntity implements UserDetails{
 	@JoinTable(name = "UserBook", joinColumns = @JoinColumn(name = "UserID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
 	private Set<Book> books = new HashSet<Book>();
 
+	@ManyToMany
+	@JoinTable(name = "UserMagazine", joinColumns = @JoinColumn(name = "UserID"), inverseJoinColumns = @JoinColumn(name = "MagazineID"))
+	private Set<Magazine> magazines = new HashSet<Magazine>();
+
 	public User() {
 	}
 

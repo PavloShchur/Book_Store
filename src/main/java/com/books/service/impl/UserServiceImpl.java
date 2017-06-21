@@ -2,11 +2,15 @@ package com.books.service.impl;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import com.books.dao.BookDao;
+import com.books.dao.OrderDao;
 import com.books.entity.Book;
+import com.books.entity.Orders;
 import com.books.entity.Role;
 import com.books.validator.Validator;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +33,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private BookDao bookDao;
 
     @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
     @Qualifier("userValidator")
     Validator validator;
 
@@ -45,6 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
+
         return userDao.findAll();
 
     }
@@ -54,11 +62,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     public void delete(int id) {
+        User user = userDao.findUserWithOrders(id);
+        for(Orders order: user.getOrders()){
+            order.setUser(null);
+            orderDao.saveAndFlush(order);
+        }
+
         userDao.delete(id);
 
     }
 
-    public void update(User user) {
+    public void update(String info) {
+
+        User user = userDao.findOne(Integer.parseInt(info.split("_")[1]));
+        user.setName(info.split("_")[0]);
         userDao.save(user);
     }
 
@@ -84,6 +101,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Book book = bookDao.findOne(id);
         user.getBooks().add(book);
         userDao.save(user);
+    }
+
+    @Override
+    public void update(User user) {
+        userDao.save(user);
+    }
+
+    @Override
+    public List<User> findAllWithOrders() {
+        return userDao.findAllWithOrders();
     }
 
     //UserDetailsService

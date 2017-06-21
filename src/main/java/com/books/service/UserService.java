@@ -2,6 +2,7 @@ package com.books.service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import com.books.entity.User;
 
@@ -10,7 +11,7 @@ public interface UserService {
     List<User> findAll();
     User findOne(int id);
     void delete(int id);
-    void update(User user);
+    void update(String info);
 
     User findUserWithOrders(int id);
 
@@ -21,4 +22,6 @@ public interface UserService {
     void like(Principal principal, int id);
 
 
+    void update(User user);
+    List<User> findAllWithOrders();
 }

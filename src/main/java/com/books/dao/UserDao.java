@@ -6,6 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.books.entity.User;
 
+import java.util.List;
+import java.util.Set;
+
 public interface UserDao extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u left join fetch u.books where u.id=:id")
@@ -19,6 +22,9 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u where u.uuid =:uuid")
 	User findByUuid(@Param("uuid") String uuid);
+
+	@Query("select distinct u from  User u left join fetch u.orders")
+	List<User> findAllWithOrders();
 
 
 

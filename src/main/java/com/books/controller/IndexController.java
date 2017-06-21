@@ -26,6 +26,11 @@ public class IndexController {
         return "views-base-index";
     }
 
+    @GetMapping("/openUserView")
+    public String user() {
+        return "views-user-listOfUsers";
+    }
+
     @GetMapping("/openCityView")
     public String magazine() {
         return "views-magazine-listOfMagazine";

@@ -1,8 +1,9 @@
 package com.books.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Magazine")
@@ -10,6 +11,10 @@ public class Magazine extends AbstractEntity{
 
     private String titleOfMagazine;
     private String priceOfMagazine;
+
+    @ManyToMany
+    @JoinTable(name = "UserMagazine", joinColumns = @JoinColumn(name = "MagazineID"), inverseJoinColumns = @JoinColumn(name = "UserID"))
+    private Set<User> users = new HashSet<User>();
 
     public Magazine() {
     }

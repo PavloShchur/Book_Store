@@ -22,6 +22,7 @@
         <security:intercept-url pattern="/updateUser" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/newOrder" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/updateCountry" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/listOfUsers" access="hasRole('ROLE_ADMIN')"/>
 
     </security:http>
 

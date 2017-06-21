@@ -10,6 +10,10 @@
 <link href="/styles/main.css" rel="stylesheet"/>
 
 
+
+
+
+
 <div style="text-align: center; margin-top: 1%">
 	<form:form modelAttribute="author" method="post" action="saveAuthor">
 		${AuthorNameException}
