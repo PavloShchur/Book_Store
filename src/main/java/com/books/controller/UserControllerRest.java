@@ -13,6 +13,7 @@ import com.books.service.UserService;
 
 
 import javax.enterprise.inject.Produces;
+import java.security.Principal;
 import java.util.List;
 
 @Transactional
@@ -52,6 +53,13 @@ public class UserControllerRest {
     public List<UserDTO> updateUser(@RequestBody String info, Model model) {
         userService.update(info);
         return DTOUtilMaper.userToDTOs(userService.findAll());
+    }
+
+    @GetMapping("/like")
+    public @ResponseBody int like(@RequestBody int id, Principal principal) {
+        System.out.println("like");
+        userService.like(principal, id);
+        return 200;
     }
 
 //    @GetMapping("/user")

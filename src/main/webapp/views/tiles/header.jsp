@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
 <div class="navbar navbar-inverse navbar-static-top">
@@ -12,29 +13,40 @@
             <ul class="nav navbar-nav">
 
                 <sec:authorize access="!isAuthenticated()">
-                    <li><a href="/signUp" target="_blank">Sign Up</a></li>
+                    <li><a href="/signUp" target="_blank"><spring:message code="label.sign_up"/> </a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="/listOfBooks" target="_blank">Books</a></li>
+                    <li><a href="/listOfBooks" target="_blank"><spring:message code="label.books"/></a></li>
                     <li><a href="/listOfAuthors" target="_blank">Authors</a></li>
                     <li><a href="${pageContext.request.contextPath}/listOfGenres" target="_blank">Genres</a></li>
                     <li><a href="/country" target="_blank">Country</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
-                    <li><a href="/listOfBooks" target="_blank">Books</a></li>
+                    <li><a href="/listOfBooks" target="_blank"><spring:message code="label.books"/></a></li>
                     <li><a href="/openCityView" target="_blank">Magazine</a></li>
-                    <li><a href="/openUserView" target="_blank">USER</a></li>
-                    <li><a href="/history" target="_blank">History</a></li>
+                    <li><a href="/openUserView" target="_blank">Users</a></li>
+                    <li><a href="/history" target="_blank"><spring:message code="label.history"/></a></li>
                     <li><a href="/buyBooks" target="_blank">Buy book</a></li>
-                    <li><a href="/profile" target="_blank">Profile</a></li>
+                    <li><a href="/profile" target="_blank"><spring:message code="label.profile"/></a></li>
                     <li>
                         <form:form action="/logout" method="post">
-                            <button class="btn btn-default">logout</button>
+                            <button class="btn btn-default"><spring:message code="label.logout"/></button>
                         </form:form>
                     </li>
                 </sec:authorize>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <spring:message code="label.lang"/> <span class="caret"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="?lang=ua">ua</a></li>
+                            <li><a href="?lang=en">en</a></li>
+                        </ul>
+                    </a>
+                </li>
 
             </ul>
         </div>
@@ -54,10 +66,8 @@
     </div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.js"></script>
+<script src="/js/bootstrap.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

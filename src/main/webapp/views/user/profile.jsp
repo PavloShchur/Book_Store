@@ -19,7 +19,7 @@
             </c:if>
             <c:if test="${userBasket.books.size() == 0}">
                 <th>
-                    don't have any drinks in basket
+                    don't have any books in basket
                 </th>
             </c:if>
         </tr>

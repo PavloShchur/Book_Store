@@ -30,7 +30,7 @@ public class UserController {
     private Validator validator;
 
     @GetMapping("/signUp")
-    public String signp(Model model) {
+    public String signUp(Model model) {
         model.addAttribute("users", userService.findAll());
         model.addAttribute("user", new User());
         return "views-user-signUp";
@@ -106,10 +106,4 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/like/{id}")
-    public String like(@PathVariable int id, Principal principal) {
-        System.out.println("like");
-        userService.like(principal, id);
-        return "views-base-index";
-    }
 }

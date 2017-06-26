@@ -36,5 +36,10 @@ public class IndexController {
         return "views-magazine-listOfMagazine";
     }
 
+    @GetMapping("/openBookView")
+    public String book() {
+        return "views-user-listOfBooks";
+    }
+
 
 }
