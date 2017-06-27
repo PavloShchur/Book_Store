@@ -10,11 +10,12 @@
             <c:if test="${userBasket.books.size() != 0}">
                 <th>Title</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>delete from basket</th>
                 <th>
-                    <form:form action="/buy" method="post">
-                        <button class="btn btn-default">buy</button>
-                    </form:form>
+                        <%--<form:form action="/buy" method="post">--%>
+                        <%--<button class="btn btn-default">buy</button>--%>
+                        <%--</form:form>--%>
                 </th>
             </c:if>
             <c:if test="${userBasket.books.size() == 0}">
@@ -25,23 +26,29 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${userBasket.books}">
+        <form:form action="/buy" method="post">
+            <button class="btn btn-default">buy</button>
+            <c:forEach var="book" items="${userBasket.books}">
+                <tr>
+                    <td>
+                            ${book.titleOfBook}
+                    </td>
+                    <td>
+                            ${book.priceOfBook}
+                    </td>
+                    <td>
+                        <input name="quantity" placeholder="quantity" type="number" min="1" value="${book.quantity}"
+                               required="required"/>
+                    </td>
+                    <td>
+                        <a href="/deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
+                    </td>
+                    <td>
 
-            <tr>
-                <td>
-                        ${book.titleOfBook}
-                </td>
-                <td>
-                        ${book.priceOfBook}
-                </td>
-                <td>
-                    <a href="/deleteFromBasket/${userBasket.id}/${book.id}">delete</a>
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </c:forEach>
+                    </td>
+                </tr>
+            </c:forEach>
+        </form:form>
         </tbody>
     </table>
 </div>

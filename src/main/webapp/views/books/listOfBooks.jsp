@@ -17,6 +17,8 @@
         <form:input path="nameOfAuthor" placeholder="nameOfAuthor" required="required"/>
         <form:input path="surnameOfAuthor" placeholder="surnameOfAuthor" required="required"/>
         <form:input path="yearOfPublishing" placeholder="yearOfPublishing" required="required"/>
+        <form:input path="quantity" type="hidden"/>
+
 
         <form:select path="genre" items="${genres}" itemLabel="genreOfBook" itemValue="id"/>
 

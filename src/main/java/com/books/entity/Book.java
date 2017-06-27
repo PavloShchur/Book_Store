@@ -15,6 +15,7 @@ public class Book extends AbstractEntity {
     private String surnameOfAuthor;
     private short yearOfPublishing;
     private String pathImage;
+    private int quantity;
 
     @ManyToOne
     private Genre genre;
@@ -56,6 +57,26 @@ public class Book extends AbstractEntity {
         this.yearOfPublishing = yearOfPublishing;
         this.pathImage = pathImage;
         this.genre = genre;
+    }
+
+    public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor, short yearOfPublishing, String pathImage, int quantity, Genre genre) {
+        this.titleOfBook = titleOfBook;
+        this.priceOfBook = priceOfBook;
+        this.nameOfAuthor = nameOfAuthor;
+        this.surnameOfAuthor = surnameOfAuthor;
+        this.yearOfPublishing = yearOfPublishing;
+        this.pathImage = pathImage;
+        this.genre = genre;
+    }
+
+    public Book(String titleOfBook, int priceOfBook, String nameOfAuthor, String surnameOfAuthor, short yearOfPublishing, String pathImage, int quantity) {
+        this.titleOfBook = titleOfBook;
+        this.priceOfBook = priceOfBook;
+        this.nameOfAuthor = nameOfAuthor;
+        this.surnameOfAuthor = surnameOfAuthor;
+        this.yearOfPublishing = yearOfPublishing;
+        this.pathImage = pathImage;
+        this.quantity = 1;
     }
 
     public int getPriceOfBook() {
@@ -136,6 +157,14 @@ public class Book extends AbstractEntity {
 
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

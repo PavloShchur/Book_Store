@@ -2,7 +2,6 @@ package com.books.service.impl;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
 import com.books.dao.BookDao;
 import com.books.dao.OrderDao;
@@ -10,7 +9,6 @@ import com.books.entity.Book;
 import com.books.entity.Orders;
 import com.books.entity.Role;
 import com.books.validator.Validator;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;

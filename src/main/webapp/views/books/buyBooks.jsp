@@ -34,7 +34,6 @@
                 <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                     <button style="margin: auto; display: block" class="add-to-cart"
                             onclick="window.location.href='/addIntoBasket/${book.id}'">Add to cart</button>
-                    <a href="/addIntoBasket/${book.id}">DFF</a>
                 </sec:authorize>
             </div>
         </c:forEach>

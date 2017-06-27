@@ -27,7 +27,7 @@
                     <li><a href="/listOfBooks" target="_blank"><spring:message code="label.books"/></a></li>
                     <li><a href="/openCityView" target="_blank">Magazine</a></li>
                     <li><a href="/openUserView" target="_blank">Users</a></li>
-                    <li><a href="/history" target="_blank"><spring:message code="label.history"/></a></li>
+                    <li><a href="/history/" target="_blank"><spring:message code="label.history"/></a></li>
                     <li><a href="/buyBooks" target="_blank">Buy book</a></li>
                     <li><a href="/profile" target="_blank"><spring:message code="label.profile"/></a></li>
                     <li>

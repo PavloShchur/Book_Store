@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import com.books.entity.User;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 

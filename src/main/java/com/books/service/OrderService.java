@@ -24,4 +24,6 @@ public interface OrderService {
     void save(int userId, List<Integer> booksIds);
 
     void makeSleep();
+
+    void getTotalPrice();
 }

@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 public class Orders extends AbstractEntity {
 
 	private LocalDateTime localDateTime;
+	private int totalPrice;
 
 	@ManyToOne
 	private User user;
@@ -23,14 +24,10 @@ public class Orders extends AbstractEntity {
 	@JoinTable(name = "OrderBook", joinColumns = @JoinColumn(name = "OrderID"), inverseJoinColumns = @JoinColumn(name = "BookID"))
 	private List<Book> books = new ArrayList<Book>();
 
-	public Orders(LocalDateTime now) {
-		super();
-		this.localDateTime = now;
+	public Orders(LocalDateTime localDateTime) {
+		this.localDateTime = localDateTime;
+
 	}
-
-
-
-
 
 	public Orders() {
 	}
@@ -59,8 +56,14 @@ public class Orders extends AbstractEntity {
 		return books;
 	}
 
-	public void setBooks(Iterable<Book> hashSet) {
-		this.books = (List<Book>) hashSet;
+	public void setBooks(Iterable<Book> hashSet) {}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	@Override

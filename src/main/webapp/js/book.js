@@ -101,18 +101,18 @@ function loadBooks() {
 };
 
 
-function updateUser(idUser) {
+function updateBook(idBook) {
 
     $.ajax({
 
-        url: '/user?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
+        url: '/book?' + $('input[name=csrf_name]').val() + "=" + $('input[name=csrf_value]').val(),
         method: 'GET',
         success: function (res) {
-            var usersFromDb = '';
+            var booksFromDb = '';
             for (var i in res) {
 
                 if (res[i].id == idUser) {
-                    usersFromDb += '<tr><td><input type="text" class="form-control" placeholder="' + res[i].name + '" id="newUserName"></td><td><button class="btn btn-default save" onclick="saveUserUpdates(' + res[i].id + ')">save updates</button></td></tr>';
+                    booksFromDb += '<tr><td><input type="text" class="form-control" placeholder="' + res[i].name + '" id="newUserName"></td><td><button class="btn btn-default save" onclick="saveUserUpdates(' + res[i].id + ')">save updates</button></td></tr>';
                 } else {
                     usersFromDb += '<tr><td id=' + res[i].id + "magazine" + '>' + res[i].name + '</td><td></td></tr>';
                 }

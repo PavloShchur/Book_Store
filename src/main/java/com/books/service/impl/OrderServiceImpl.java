@@ -7,16 +7,18 @@ import com.books.entity.Book;
 import com.books.entity.Orders;
 import com.books.entity.User;
 import com.books.service.OrderService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+@Transactional
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -68,13 +70,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void buy(int userId) {
-
         Orders orders = new Orders(LocalDateTime.now());
         orderDao.saveAndFlush(orders);
         User user = userDao.findUserWithBooks(userId);
         orders.setUser(user);
         for (Book book : user.getBooks()) {
-
             orders.getBooks().add(book);
 
             orderDao.save(orders);
@@ -82,7 +82,6 @@ public class OrderServiceImpl implements OrderService {
 
         user.getBooks().clear();
         userDao.save(user);
-
     }
 
     public void save(int userId, List<Integer> booksIds) {
@@ -111,5 +110,22 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Override
+    public void getTotalPrice() {
+
+        int price = 0;
+
+        List<Orders> orders = orderDao.findAll();
+        for (Orders order : orders) {
+            Hibernate.initialize(order.getBooks()
+            );
+
+            for (Book book : order.getBooks()) {
+                price += book.getPriceOfBook() * book.getQuantity();
+                order.setTotalPrice(price);
+            }
+        }
+    }
 
 }
+

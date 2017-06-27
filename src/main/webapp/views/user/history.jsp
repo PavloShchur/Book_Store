@@ -26,7 +26,11 @@
                 <td>
                     <c:forEach items="${order.books}" var="book">
                         ${book.titleOfBook} <br>
+                        ${book.priceOfBook} <br>
                     </c:forEach>
+                </td>
+                <td>
+                    <c:out value="${order.totalPrice}">Total price</c:out>
                 </td>
             </tr>
         </c:forEach>

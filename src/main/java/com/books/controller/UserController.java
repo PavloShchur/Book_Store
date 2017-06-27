@@ -1,6 +1,10 @@
 package com.books.controller;
 
+import com.books.entity.Book;
+import com.books.service.BookService;
 import com.books.service.MailSenderService;
+import com.books.service.OrderService;
+import com.books.service.impl.OrderServiceImpl;
 import com.books.validator.Validator;
 import com.books.validator.userLoginValidation.UserLoginValidationMessages;
 import com.books.validator.userValidator.UserValidationMessages;
@@ -21,6 +25,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private MailSenderService mailSenderService;
@@ -63,6 +73,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String userProfile(Principal principal, Model model) {
+
         model.addAttribute("userBasket",
                 userService.findUserWithBooks(Integer.parseInt(principal.getName())));
         return "views-user-profile";
@@ -88,7 +99,7 @@ public class UserController {
 
     @GetMapping("/history")
     public String history(Principal principal, Model model) {
-
+        orderService.getTotalPrice();
         model.addAttribute("user",
                 userService.findUserWithOrders(Integer.parseInt(principal.getName())));
 
