@@ -73,7 +73,7 @@ public class BookController {
         return "views-books-buyBooks";
     }
 
-    @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
+    @GetMapping("/deleteBook/{id}")
     public String deleteBook(@PathVariable int id) {
 
         bookService.delete(id);

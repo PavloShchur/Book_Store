@@ -14,18 +14,22 @@
     <div class="tabs-content">
         <div id="signup-tab-content" class="active">
             <form:form modelAttribute="user" class="signup-form" method="post">
-                ${UserNameException}
+
+                <h3 style="text-align: center;color: red">${UserNameException}</h3>
                 <form:input path="name" type="text" class="input" id="user_name" autocomplete="off"
                             placeholder="Username"/>
-                <%--<h3 style="text-align: center;color: red">${emailException}</h3>--%>
+
+                <h3 style="text-align: center;color: red">${UserEmailException}</h3>
                 <form:input path="email" type="text" class="input" id="user_email" autocomplete="off"
                             placeholder="Email"/>
-                <%--<h3 style="text-align: center;color: red">${passwordException}</h3>--%>
+
+                <h3 style="text-align: center;color: red">${UserPasswordException}</h3>
                 <form:input path="password" type="password" class="input" id="user_pass" autocomplete="off"
                             placeholder="Password"/>
                 <input type="submit" class="button" value="Sign Up">
-            </form:form><!--.login-form-->
-        </div><!--.signup-tab-content-->
+
+            </form:form>
+        </div>
 
         <div id="login-tab-content">
             <form:form class="login-form" action="/login" method="post">
@@ -35,11 +39,10 @@
 
                        placeholder="Password">
                 <input type="submit" class="button" value="Login">
-            </form:form><!--.login-form-->
-        </div><!--.login-tab-content-->
-    </div><!--.tabs-content-->
+            </form:form>
+        </div>
+    </div>
 </div>
-<!--.form-wrap-->
 
 <table style="border: 1px solid black">
     <tr>

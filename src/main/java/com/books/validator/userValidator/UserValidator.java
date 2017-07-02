@@ -25,6 +25,20 @@ public class UserValidator implements Validator {
             throw new UserException(UserValidationMessages.EMPTY_USERNAME_FIELD);
         } else if (userDao.findByName(user.getName()) != null) {
             throw new UserException(UserValidationMessages.USERNAME_ALREADY_EXISTS);
+        } else if (user.getEmail().isEmpty()) {
+            throw new UserException(UserValidationMessages.EMPTY_USEREMAIL_FIELD);
+        } else if (user.getPassword().isEmpty()) {
+            throw new UserException(UserValidationMessages.EMPTY_PASSWORD_FIELD);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
