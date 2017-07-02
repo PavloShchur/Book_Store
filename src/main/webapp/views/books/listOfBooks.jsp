@@ -4,6 +4,18 @@
 <%@ taglib prefix="custom" uri="/WEB-INF/custom.tld" %>
 
 
+<link href="images/favicon.ico" rel="shortcut icon" />
+<link href="images/apple-touch-icon.png" rel="apple-touch-icon" />
+<link href="images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon" />
+<link href="images/apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon" />
+<!-- Le javascript
+================================================== -->
+<script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" data-semver="3.1.1" data-require="bootstrap"></script>
+<script src="http://bootboxjs.com/bootbox.js"></script>
+<script src="script.js"></script>
+
+
 <title>Books</title>
 <div style="text-align: center; margin-top: 1%">
     <form:form modelAttribute="book" method="post"
@@ -57,7 +69,28 @@
             <td>
                 <img src="${book.pathImage}" alt="NO IMAGE" width="20%" height="20%">
             </td>
-            <td style="border: 1px solid black"><a href="/deleteBook/${book.id}">Delete</a></td>
+
+
+
+            <%--<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet" />--%>
+            <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>--%>
+            <%--<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>--%>
+
+
+            <div id="confirm" class="modal hide fade">
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                </div>
+            </div>
+
+            <%--<td> <form action="/deleteBook/${book.id}?${_csrf.parameterName}=${_csrf.token}" method="GET">--%>
+                <%--<button id="btnDelete" class='btn btn-danger btn-xs' type="submit" name="remove_levels" value="delete"><span class="fa fa-times"></span>delete</button>--%>
+            <%--</form></td>--%>
+            <td style="border: 1px solid black"><a href="/deleteBook/${book.id}" onclick="return confirm('Are you sure you want to delete')">Delete</a></td>
             <td style="border: 1px solid black "><a href="/updateBook/${book.id}" target="_blank">Update</a></td>
             <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                 <td style="border: 1px solid black ">
@@ -97,3 +130,14 @@
     </div>
 </div>
 
+
+<script>
+    $(document).ready(function() {
+
+        $('#btnDelete').click(function() {
+            bootbox.confirm("Are you sure want to delete?", function(result) {
+                alert("Confirm result: " + result);
+            });
+        });
+    });
+</script>
