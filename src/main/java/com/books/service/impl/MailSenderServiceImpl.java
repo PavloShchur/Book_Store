@@ -42,8 +42,6 @@ public class MailSenderServiceImpl implements MailSenderService {
             helper.setFrom(new InternetAddress(EMAIL_FROM));
             helper.setTo(email);
             helper.setSubject(thema);
-            FileSystemResource resource = new FileSystemResource("D:\\Завантажені файли\\s.png");
-            helper.addAttachment("s.png", resource);
             helper.setText("<head>\n" +
                     "  <title></title>\n" +
                     "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
@@ -122,7 +120,7 @@ public class MailSenderServiceImpl implements MailSenderService {
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td><td style=\"vertical-align:top;width:420px;\">\n" +
                     "      <![endif]--><div aria-labelledby=\"mj-column-per-70\" class=\"mj-column-per-70\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px 0px 10px;\" align=\"left\"><div style=\"cursor:auto;color:#222228;font-family:'Avenir Next', Avenir, sans-serif;font-size:16px;line-height:30px;\">\n" +
-                    "            hello@SmilesDavis.yeah\n" +
+                    "           <span style=\"text-decoration:none\">" + email +"</span>\n" +
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td><td style=\"vertical-align:top;width:180px;\">\n" +
                     "      <![endif]--><div aria-labelledby=\"mj-column-per-30\" class=\"mj-column-per-30\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px 0px 10px;\" align=\"left\"><div style=\"cursor:auto;color:#222228;font-family:'Avenir Next', Avenir, sans-serif;font-size:16px;line-height:30px;\">\n" +
@@ -130,7 +128,7 @@ public class MailSenderServiceImpl implements MailSenderService {
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td><td style=\"vertical-align:top;width:420px;\">\n" +
                     "      <![endif]--><div aria-labelledby=\"mj-column-per-70\" class=\"mj-column-per-70\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px 0px 25px;\" align=\"left\"><div style=\"cursor:auto;color:#222228;font-family:'Avenir Next', Avenir, sans-serif;font-size:16px;line-height:30px;\">\n" +
-                    "            <a href=" + mailBody + " style=\"color:#0a84ae; text-decoration:none\" target=\"_blank\">" + mailBody + "</a>\n" +
+                    "            <a href= style=\"color:#0a84ae; text-decoration:none\" target=\"_blank\">" + mailBody + "</a>\n" +
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td></tr></table>\n" +
 
@@ -154,7 +152,7 @@ public class MailSenderServiceImpl implements MailSenderService {
                     "          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">\n" +
                     "      <![endif]--><div style=\"margin:0 auto;max-width:600px;background:white;\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:white;\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;font-size:0px;padding:20px 0px;\"><!--[if mso | IE]>\n" +
                     "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td style=\"vertical-align:top;width:600px;\">\n" +
-                    "      <![endif]--><div aria-labelledby=\"mj-column-per-100\" class=\"mj-column-per-100\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:10px 25px;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" align=\"center\" border=\"0\"><tbody><tr><td style=\"border-radius:3px;color:white;cursor:auto;\" align=\"center\" valign=\"middle\" bgcolor=\"#EB5424\"><a href=\"#\" style=\"display:inline-block;text-decoration:none;background:#EB5424;border-radius:3px;color:white;font-family:'Avenir Next', Avenir, sans-serif;font-size:14px;font-weight:500;line-height:35px;padding:10px 25px;margin:0px;\" target=\"_blank\">\n" +
+                    "      <![endif]--><div aria-labelledby=\"mj-column-per-100\" class=\"mj-column-per-100\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:10px 25px;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" align=\"center\" border=\"0\"><tbody><tr><td style=\"border-radius:3px;color:white;cursor:auto;\" align=\"center\" valign=\"middle\" bgcolor=\"#EB5424\"><a href=\""+ mailBody + "\" style=\"display:inline-block;text-decoration:none;background:#EB5424;border-radius:3px;color:white;font-family:'Avenir Next', Avenir, sans-serif;font-size:14px;font-weight:500;line-height:35px;padding:10px 25px;margin:0px;\" target=\"_blank\">\n" +
                     "            VERIFY YOUR ACCOUNT\n" +
                     "          </a></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td></tr></table>\n" +
