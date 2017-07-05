@@ -31,9 +31,10 @@
     <div class="clear"></div>
     <div class="items" id="ID">
         <c:forEach items="${books}" var="book">
-            <div class="item" id="myUL_2">
-                <td><img src="${fn:escapeXml(book.pathImage)}" alt="NO IMAGE" width="150px" height="150px"></td>
-                <td style="float: right" id="myUL_3"><${book.titleOfBook}">${book.priceOfBook}</td>
+            <div class="item">
+                <img src="${book.pathImage}" alt="NO IMAGE" width="150px" height="150px">
+                <h2>${book.titleOfBook}
+                    <p style="float: right">${book.priceOfBook}$</p></h2>
                 <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                     <button style="margin: auto; display: block" class="add-to-cart"
                             onclick="window.location.href='/addIntoBasket/${book.id}'">Add to cart
