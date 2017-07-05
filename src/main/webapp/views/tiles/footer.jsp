@@ -3,8 +3,8 @@
 
 <%--<div style="height: 100px; text-align: center;background-color: grey" class="footer"></div>--%>
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-    </div>
-</footer>
+<%--<footer class="footer">--%>
+    <%--<div class="container">--%>
+        <%--<p class="text-muted">Place sticky footer content here.</p>--%>
+    <%--</div>--%>
+<%--</footer>--%>
