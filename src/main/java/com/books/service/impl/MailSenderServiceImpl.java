@@ -1,6 +1,10 @@
 package com.books.service.impl;
 
+import com.books.entity.Book;
+import com.books.entity.Orders;
+import com.books.entity.User;
 import com.books.service.MailSenderService;
+import com.books.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +14,9 @@ import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
@@ -19,6 +25,9 @@ public class MailSenderServiceImpl implements MailSenderService {
 
     @Autowired
     JavaMailSender mailSender;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public void sendMail(String thema, String mailBody, String email) {
@@ -120,7 +129,7 @@ public class MailSenderServiceImpl implements MailSenderService {
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td><td style=\"vertical-align:top;width:420px;\">\n" +
                     "      <![endif]--><div aria-labelledby=\"mj-column-per-70\" class=\"mj-column-per-70\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px 0px 10px;\" align=\"left\"><div style=\"cursor:auto;color:#222228;font-family:'Avenir Next', Avenir, sans-serif;font-size:16px;line-height:30px;\">\n" +
-                    "           <span style=\"text-decoration:none\">" + email +"</span>\n" +
+                    "           <span style=\"text-decoration:none\">" + email + "</span>\n" +
                     "          </div></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td><td style=\"vertical-align:top;width:180px;\">\n" +
                     "      <![endif]--><div aria-labelledby=\"mj-column-per-30\" class=\"mj-column-per-30\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:0px 0px 10px;\" align=\"left\"><div style=\"cursor:auto;color:#222228;font-family:'Avenir Next', Avenir, sans-serif;font-size:16px;line-height:30px;\">\n" +
@@ -152,7 +161,7 @@ public class MailSenderServiceImpl implements MailSenderService {
                     "          <td style=\"line-height:0px;font-size:0px;mso-line-height-rule:exactly;\">\n" +
                     "      <![endif]--><div style=\"margin:0 auto;max-width:600px;background:white;\"><table cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:0px;width:100%;background:white;\" align=\"center\" border=\"0\"><tbody><tr><td style=\"text-align:center;vertical-align:top;font-size:0px;padding:20px 0px;\"><!--[if mso | IE]>\n" +
                     "      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td style=\"vertical-align:top;width:600px;\">\n" +
-                    "      <![endif]--><div aria-labelledby=\"mj-column-per-100\" class=\"mj-column-per-100\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:10px 25px;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" align=\"center\" border=\"0\"><tbody><tr><td style=\"border-radius:3px;color:white;cursor:auto;\" align=\"center\" valign=\"middle\" bgcolor=\"#EB5424\"><a href=\""+ mailBody + "\" style=\"display:inline-block;text-decoration:none;background:#EB5424;border-radius:3px;color:white;font-family:'Avenir Next', Avenir, sans-serif;font-size:14px;font-weight:500;line-height:35px;padding:10px 25px;margin:0px;\" target=\"_blank\">\n" +
+                    "      <![endif]--><div aria-labelledby=\"mj-column-per-100\" class=\"mj-column-per-100\" style=\"vertical-align:top;display:inline-block;font-size:13px;text-align:left;width:100%;\"><table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\"><tbody><tr><td style=\"word-break:break-word;font-size:0px;padding:10px 25px;\" align=\"center\"><table cellpadding=\"0\" cellspacing=\"0\" align=\"center\" border=\"0\"><tbody><tr><td style=\"border-radius:3px;color:white;cursor:auto;\" align=\"center\" valign=\"middle\" bgcolor=\"#EB5424\"><a href=\"" + mailBody + "\" style=\"display:inline-block;text-decoration:none;background:#EB5424;border-radius:3px;color:white;font-family:'Avenir Next', Avenir, sans-serif;font-size:14px;font-weight:500;line-height:35px;padding:10px 25px;margin:0px;\" target=\"_blank\">\n" +
                     "            VERIFY YOUR ACCOUNT\n" +
                     "          </a></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]>\n" +
                     "      </td></tr></table>\n" +
@@ -206,5 +215,56 @@ public class MailSenderServiceImpl implements MailSenderService {
             System.out.println("You have some problems with connection!");
         }
     }
+
+
+    @Override
+    public void sendMail_Check(String thema, Set<Book> mailBody, String email) {
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.port", "465");
+        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+        properties.setProperty("mail.smtp.socketFactory.port", "465");
+        properties.setProperty("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        Session session = Session.getDefaultInstance(properties,
+                new Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(EMAIL_FROM, EMAIL_PASSWORD);
+                    }
+                });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(new InternetAddress(EMAIL_FROM));
+            helper.setTo(email);
+            helper.setSubject(thema);
+            FileSystemResource resource = new FileSystemResource("C:\\Users\\User\\Desktop\\apache-tomcat-8.0.43\\" +
+                    mailBody.iterator().next().getPathImage());
+
+            String image = mailBody.iterator().next().getPathImage();
+            System.out.println("IMAGE = " + image);
+            String[] newImage = image.split("/");
+            for (String s : newImage) {
+                System.out.println("newImage = " + s.toString());
+            }
+
+            String imageName = newImage[2];
+
+            helper.addAttachment(imageName, resource);
+
+
+
+
+            helper.setText("\"Smiley face\"/>",true);
+            synchronized (this) {
+                mailSender.send(message);
+            }
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+            System.out.println("You have some problems with connection!");
+        }
+    }
 }
+
 

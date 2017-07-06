@@ -37,7 +37,7 @@
                             ${book.priceOfBook}
                     </td>
                     <td>
-                        <input name="quantity" placeholder="quantity" type="number" min="1" value="${book.quantity}"
+                        <input name="quantity" placeholder="quantity" type="number" min="1" value="1"
                                required="required"/>
                     </td>
                     <td>

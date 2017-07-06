@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/listOfBooks.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/slider.css">
     <script src="${pageContext.request.contextPath}/js/index.js"></script>
     <script src="/js/jquery-3.2.1.min.js"></script>
 

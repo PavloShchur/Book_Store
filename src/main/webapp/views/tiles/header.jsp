@@ -18,18 +18,22 @@
 
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li><a href="/listOfBooks" target="_blank"><spring:message code="label.books"/></a></li>
-                    <li><a href="/listOfAuthors" target="_blank">Authors</a></li>
-                    <li><a href="${pageContext.request.contextPath}/listOfGenres" target="_blank">Genres</a></li>
-                    <li><a href="/country" target="_blank">Country</a></li>
+                    <li><a href="/listOfAuthors" target="_blank"><spring:message
+                            code="label.authors"></spring:message></a></li>
+                    <li><a href="/listOfGenres" target="_blank"><spring:message
+                            code="label.genres"></spring:message></a></li>
+                    <li><a href="/country" target="_blank"><spring:message code="label.countries"/></a></li>
+                </sec:authorize>
+
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li><a href="/buyBooks" target="_blank"><spring:message code="label.buyBook"/></a></li>
+                    <li><a href="/profile" target="_blank"><spring:message code="label.profile"/></a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
-                    <li><a href="/listOfBooks" target="_blank"><spring:message code="label.books"/></a></li>
-                    <li><a href="/openCityView" target="_blank">Magazine</a></li>
-                    <li><a href="/openUserView" target="_blank">Users</a></li>
+                    <li><a href="/openCityView" target="_blank"><spring:message code="label.magazines"/></a></li>
+                    <li><a href="/openUserView" target="_blank"><spring:message code="label.users"/></a></li>
                     <li><a href="/history/" target="_blank"><spring:message code="label.history"/></a></li>
-                    <li><a href="/buyBooks" target="_blank">Buy book</a></li>
-                    <li><a href="/profile" target="_blank"><spring:message code="label.profile"/></a></li>
                     <li>
                         <form:form action="/logout" method="post">
                             <button class="btn btn-default"><spring:message code="label.logout"/></button>

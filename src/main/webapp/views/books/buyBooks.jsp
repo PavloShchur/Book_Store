@@ -8,8 +8,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 <script type='text/javascript' src="<c:url value="/js/buyBooks.js"/>"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="<c:url value="/js/index.js"/>"></script>
+<script src="<c:url value="/js/search.js"/>"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <input type="number" id="myInput" onkeyup="loadBookPrices()" placeholder="Search for names.." title="Type in a name">
+
+<div style="margin-bottom: 10px; margin-top: 10px; width: 20%; float: right; padding-right: 10px">
+    <div data-role="rangeslider">
+        <p>
+            <label for="amount">Price range:</label>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <label for="price-min">Min:</label>
+        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000" onchange="changeLabel()"
+               oninput="searchPrices()">
+        <label for="price-max">Max:</label>
+        <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000" onchange="changeLabel()"
+               oninput="searchPrices()">
+    </div>
+    <input style="margin-top: 5px" type="text" class="form-control" id="searchIn" oninput="searchItems()"
+           placeholder="Search..."/>
+</div>
+
+<%--<div id="slider-range"></div>--%>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -29,12 +57,12 @@
     <span><i class="cart_anchor"></i></span>
 
     <div class="clear"></div>
-    <div class="items" id="ID">
+    <div class="items" id="searchDiv">
         <c:forEach items="${books}" var="book">
             <div class="item">
                 <img src="${book.pathImage}" alt="NO IMAGE" width="150px" height="150px">
                 <h2>${book.titleOfBook}
-                    <p style="float: right">${book.priceOfBook}$</p></h2>
+                    <p style="float: right">${book.priceOfBook}<em>$</em></p></h2>
                 <sec:authorize access="isAuthenticated() && hasRole('ROLE_USER')">
                     <button style="margin: auto; display: block" class="add-to-cart"
                             onclick="window.location.href='/addIntoBasket/${book.id}'">Add to cart
@@ -111,7 +139,7 @@
 
                 input = document.getElementById("myInput");
                 filter = input.value;
-                div = document.getElementById("ID");
+                div = document.getElementById("searchDiv");
                 div_2 = div.getElementsByTagName("div");
 
                 for (i = 0; i < div_2.length; i++) {

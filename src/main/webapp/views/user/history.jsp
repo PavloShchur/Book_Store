@@ -15,6 +15,7 @@
         <tr>
             <th>order date</th>
             <th>books</th>
+            <th>total price</th>
         </tr>
         </thead>
         <tbody>

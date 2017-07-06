@@ -2,6 +2,9 @@ package com.books.service.impl;
 
 import java.util.List;
 
+import com.books.DTO.BookDTO;
+import com.books.dao.BookDao;
+import com.books.entity.Book;
 import com.books.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +19,9 @@ public class GenreServiceImpl implements GenreService {
 
     @Autowired
     private GenreDao genreDao;
+
+    @Autowired
+    private BookDao bookDao;
 
     @Autowired
     @Qualifier("genreValidator")
@@ -35,6 +41,11 @@ public class GenreServiceImpl implements GenreService {
     }
 
     public void delete(int id) {
+        Genre genre = genreDao.findGenreWithBooks(id);
+        for (Book b : genre.getBooks()) {
+            b.setGenre(null);
+            bookDao.saveAndFlush(b);
+        }
         genreDao.delete(id);
     }
 

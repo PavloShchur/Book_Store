@@ -20,4 +20,9 @@ public class BookControllerRest {
     public List<BookDTO> bookDTOS() {
         return DTOUtilMaper.bookDTOS(bookService.findAll());
     }
+
+    @GetMapping("/itemSearch")
+    public List<BookDTO> loadItems() {
+        return DTOUtilMaper.bookDTOS(bookService.findAll());
+    }
 }

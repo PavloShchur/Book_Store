@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-3.2.1.min.js"></script>
 
@@ -7,13 +7,9 @@
 
 <div class="container">
     <div class="panel">
-        <table class="table table-hover">
+        <table class="table table-hover" style="border: hidden">
             <thead>
-            <tr>
-                <th>name</th>
-                <th>update</th>
-                <th>delete</th>
-            </tr>
+
             </thead>
             <tbody id="result">
             </tbody>

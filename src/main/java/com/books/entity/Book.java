@@ -76,7 +76,7 @@ public class Book extends AbstractEntity {
         this.surnameOfAuthor = surnameOfAuthor;
         this.yearOfPublishing = yearOfPublishing;
         this.pathImage = pathImage;
-        this.quantity = 1;
+        this.quantity = quantity;
     }
 
     public int getPriceOfBook() {

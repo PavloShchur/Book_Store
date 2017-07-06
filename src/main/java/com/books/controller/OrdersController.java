@@ -2,10 +2,13 @@ package com.books.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import com.books.entity.Book;
+import com.books.entity.Orders;
 import com.books.entity.User;
 import com.books.service.BookService;
+import com.books.service.MailSenderService;
 import com.books.service.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +31,14 @@ public class OrdersController {
 	@Autowired
 	private BookService bookService;
 
+	@Autowired
+	private MailSenderService mailSenderService;
+
 	@GetMapping("/addIntoBasket/{id}")
 	public String addIntoBasket(Principal principal, @PathVariable int id){
 		ordersService.makeSleep();
 		ordersService.addIntoBasket(principal, id);
-		return "redirect:/";
+		return "redirect:/buyBooks";
 	}
 
 	@GetMapping("/deleteFromBasket/{userId}/{bookId}")
@@ -55,6 +61,14 @@ public class OrdersController {
 			book.setQuantity(quantity);
 			bookService.update(book);
 		}
+
+		String theme = "Thank You";
+		String mailBody = "http://localhost:8080/index/";
+
+		System.out.println("user.getEmail() = " + user.getEmail());
+
+		mailSenderService.sendMail_Check(theme, (user.getBooks()), user.getEmail());
+
 		ordersService.buy(Integer.parseInt(principal.getName()));
 
 		return "redirect:/profile";

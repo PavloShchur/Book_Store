@@ -1,6 +1,5 @@
 package com.books.controller;
 
-import com.books.service.BookService;
 import com.books.service.MailSenderService;
 import com.books.service.OrderService;
 import com.books.validator.Validator;
@@ -23,9 +22,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private BookService bookService;
 
     @Autowired
     private OrderService orderService;
@@ -88,14 +84,16 @@ public class UserController {
         try {
             validator.validate(new User(username, password));
         } catch (Exception e) {
-            if (e.getMessage().equals(UserValidationMessages.EMPTY_USERNAME_FIELD) ||
-                    e.getMessage().equals(UserLoginValidationMessages.EMPTY_PASSWORD_FIELD) ||
-                    e.getMessage().equals(UserLoginValidationMessages.WRONG_USERNAME_OR_PASSWORD)) {
+            if (e.getMessage().equals(UserLoginValidationMessages.EMPTY_USERNAME_FIELD)) {
+                model.addAttribute("UserNameException", e.getMessage());
+            } else if (e.getMessage().equals(UserLoginValidationMessages.EMPTY_PASSWORD_FIELD)) {
+                model.addAttribute("UserPasswordException", e.getMessage());
+            } else if (e.getMessage().equals(UserLoginValidationMessages.WRONG_USERNAME_OR_PASSWORD)) {
                 model.addAttribute("exception", e.getMessage());
             }
-        }
-        model.addAttribute("user", new User());
 
+            model.addAttribute("user", new User());
+        }
         return "views-user-signUp";
     }
 
@@ -120,7 +118,7 @@ public class UserController {
     }
 
     @GetMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable int id){
+    public String deleteUser(@PathVariable int id) {
 
         userService.delete(id);
 

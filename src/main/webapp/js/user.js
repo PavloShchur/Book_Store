@@ -1,6 +1,3 @@
-/**
- * Created by User on 20.06.2017.
- */
 
 $('#saveUser').click(function () {
 
@@ -21,7 +18,9 @@ $('#saveUser').click(function () {
             var usersFromDb = '';
 
             for (var i in res) {
-                usersFromDb += '<tr><td id=' + res[i].id + "user" + '>' + res[i].name +
+                usersFromDb += '<table class="table table-hover"><thead>' +
+                    '<tr><th>name</th><th>update</th><th id="HIDE">delete</th></tr></thead><tbody id="result"></tbody>' +
+                    '</table><tr><td id=' + res[i].id + "user" + '>' + res[i].name +
                     '</td><td><button class="btn btn-default updateMagazine '+res[i].id+'" onclick="updateUser(' + res[i].id
                     + ')">update</button></td><td><button class="btn btn-default"' +
                     ' id="deleteUser" onclick="deleteUser(' + res[i].id + ')">delete</button></td></tr>';
@@ -65,7 +64,7 @@ loadUsers();
 
 function loadUsers() {
 
-        $.ajax({
+    $.ajax({
         url : 'save.web',
         datatype:'json',
         type: "post",
@@ -75,7 +74,9 @@ function loadUsers() {
         success: function (res) {
             var usersFromDb = '';
             for (var i in res) {
-                usersFromDb += '<tr><td id=' + res[i].id + "user" + '>'
+                usersFromDb += '<table class="table table-hover"><thead>' +
+                    '<tr><th>name</th><th>update</th><th>delete</th></tr></thead><tbody id="result"></tbody>' +
+                    '</table><tr><td id=' + res[i].id + "user" + '>'
                     + res[i].name + '</td><td><button class="btn btn-default updateUser '+res[i].id+'" onclick="updateUser('
                     + res[i].id +
                     ')">update</button></td><td><button class="btn btn-default" id="deleteUser" onclick="deleteUser('
@@ -134,7 +135,9 @@ function saveUserUpdates(idUser) {
             var usersFromDb = '';
 
             for (var i in res) {
-                usersFromDb += '<tr><td id=' +
+                usersFromDb += '<table class="table table-hover"><thead>' +
+                    '<tr><th>name</th><th>update</th><th id="HIDE">delete</th></tr></thead><tbody id="result"></tbody>' +
+                    '</table><tr><td id=' +
                     res[i].id + "magazine" + '>' + res[i].name +
                     '</td><td><button class="btn btn-default updateUser '+res[i].id+'" onclick="updateUser(' + res[i].id + ')">update' +
                     '</button></td><td><button class="btn btn-default" id="deleteMagazine" onclick="deleteUser(' +
